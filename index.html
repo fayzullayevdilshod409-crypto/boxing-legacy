@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BOXING LEGACY — Professional Career Simulator</title>
+<style>
+:root{--bg:#080d16;--panel:#111a28;--panel2:#172235;--gold:#e4bd62;--gold2:#f4d991;--muted:#93a2b8;--text:#edf2fa;--red:#e15b62;--green:#4bc49a;--line:#29364a;--blue:#75a7f8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172238 0,#080d16 55%);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #45536a;background:#202d41;color:var(--text);padding:9px 13px;border-radius:9px;font-weight:700;transition:.15s}button:hover{border-color:var(--gold);transform:translateY(-1px)}button.primary{background:linear-gradient(135deg,#e6c56f,#a97827);border:0;color:#17130b}button.danger{border-color:#74383f;background:#382129}button:disabled{opacity:.4;cursor:not-allowed;transform:none}.hidden{display:none!important}.muted{color:var(--muted)}.gold{color:var(--gold)}.good{color:var(--green)}.bad{color:var(--red)}.wrap{max-width:1400px;margin:auto;padding:20px}.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-weight:1000;font-size:23px;transform:skew(-5deg)}h1,h2,h3,p{margin-top:0}h1{font-size:23px;letter-spacing:2px;margin-bottom:0}h2{font-size:19px}h3{font-size:14px;color:var(--gold);text-transform:uppercase;letter-spacing:1px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}.topright{display:flex;gap:8px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:18px}.sidebar,.panel{background:linear-gradient(145deg,rgba(20,31,48,.97),rgba(12,19,31,.97));border:1px solid var(--line);border-radius:15px}.sidebar{padding:12px;height:max-content;position:sticky;top:12px}.navbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin:3px 0;background:transparent;border-color:transparent;color:#b7c4d8;font-weight:600}.navbtn.active{background:#283449;border-color:#45516a;color:var(--gold)}.navbtn span{width:22px;text-align:center}.main{min-width:0}.panel{padding:18px;margin-bottom:16px}.hero{background:linear-gradient(115deg,#19273a,#111925 65%,#3d3020);border-color:#5b4a2c;position:relative;overflow:hidden}.hero:after{content:"BL";position:absolute;right:20px;top:-40px;font-size:180px;font-weight:1000;color:#ffffff06;font-style:italic;pointer-events:none}.hero h2{font-size:28px;margin-bottom:6px}.hero p{max-width:700px;color:#c2ccdb}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:#0d1522;border:1px solid var(--line);border-radius:11px;padding:13px}.stat .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}.stat .value{font-size:23px;font-weight:850;margin:4px 0}.stat small{color:var(--muted)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{display:flex;align-items:center;justify-content:space-between;gap:12px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}.field label{color:#b6c3d5;font-size:12px;font-weight:700}.field input,.field select{width:100%;background:#09111d;color:var(--text);border:1px solid #34435a;padding:10px;border-radius:8px;min-width:0}.formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 12px}.bar{height:7px;border-radius:10px;background:#263347;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#9a702d,var(--gold));border-radius:10px}.bar.red i{background:linear-gradient(90deg,#a83f4c,var(--red))}.bar.green i{background:linear-gradient(90deg,#258d6d,var(--green))}.tag{display:inline-block;border:1px solid #45516a;background:#1b293d;color:#dce5f2;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:700}.tag.goldtag{border-color:#77602f;color:var(--gold);background:#332b1b}.tag.redtag{border-color:#713b43;color:#ff9298;background:#351e27}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;font-size:12px;min-width:580px}th,td{padding:10px 11px;border-bottom:1px solid #273448;text-align:left;white-space:nowrap}th{background:#1a2639;color:#b9c8dc;text-transform:uppercase;font-size:10px;letter-spacing:.7px}tr:last-child td{border-bottom:0}.fighter{display:flex;align-items:center;gap:10px}.avatar{height:38px;width:38px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,#b68b3c,#49391f);color:#fff;font-weight:900;font-size:16px;flex-shrink:0}.empty{text-align:center;padding:36px 14px;color:var(--muted)}.empty strong{display:block;color:#e4eaf4;font-size:16px;margin-bottom:5px}.feeditem{border-left:2px solid #77602f;padding:2px 0 12px 13px;margin:0 0 12px}.feeditem:last-child{margin-bottom:0}.feeditem b{display:block;margin-bottom:3px}.pillrow{display:flex;gap:7px;flex-wrap:wrap}.result{padding:13px;border-radius:10px;background:#0c1420;border:1px solid var(--line);margin:8px 0}.fightarena{background:radial-gradient(ellipse at center,#253247,#0a101a 70%);border:1px solid #45516a;border-radius:14px;padding:22px;text-align:center}.vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:18px 0}.corner{padding:12px}.corner strong{display:block;font-size:18px}.roundlog{max-height:280px;overflow:auto;text-align:left;background:#080e17;border-radius:10px;padding:12px;margin-top:14px}.roundlog p{font-size:12px;margin:0 0 8px;color:#c4cede}.meterlabel{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin:9px 0 4px}.notice{padding:10px 12px;border-radius:8px;background:#1a2a3b;border:1px solid #34475f;color:#c7d8ed;margin:10px 0}.notice.warn{background:#321f24;border-color:#75404a}.smallbtn{padding:6px 9px;font-size:11px}.footer{font-size:11px;color:#75869d;text-align:center;padding:15px}.modalback{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:20px;z-index:10}.modal{background:#111b2a;border:1px solid #4b5a70;border-radius:14px;padding:20px;max-width:560px;width:100%;max-height:90vh;overflow:auto}.toast{position:fixed;right:18px;bottom:18px;background:#202e41;border:1px solid #53627a;padding:12px 16px;border-radius:10px;z-index:20;box-shadow:0 10px 30px #0008}.tabrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}.tabrow button{font-size:12px}.subhead{margin:18px 0 10px}.inlinefield{max-width:180px}.fightbuttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px;padding:8px}.navbtn{width:auto;white-space:nowrap;margin:0;padding:9px}.navbtn span{width:auto}.navbtn .navtext{display:inline}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.top{align-items:flex-start}.topright{justify-content:flex-end}}
+@media(max-width:520px){.wrap{padding:10px}.panel{padding:13px}.top{flex-direction:column}.topright{justify-content:flex-start}.grid2,.grid3{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.hero h2{font-size:23px}.stats .value{font-size:20px}.sidebar .navbtn{font-size:11px;padding:8px}.sidebar .navbtn span{display:none}.vs{gap:2px}.corner strong{font-size:14px}}
+</style>
+
+<meta name="theme-color" content="#080d16">
+<meta name="description" content="BOXING LEGACY — professional boxing career simulator. Play offline after the first visit.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BOXING LEGACY">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">BL</div><div><h1>BOXING <span class="gold">LEGACY</span></h1><div class="muted" style="font-size:11px;letter-spacing:1.4px">YOUR CAREER. YOUR LEGACY.</div></div></div><div class="topright"><span id="dateBadge" class="tag goldtag">Karyera boshlanmagan</span><button id="quickSave">Saqlash</button><button id="quickLoad">Yuklash</button></div></header>
+<div id="app"></div>
+<div class="footer">BOXING LEGACY · Barcha jangchilar va natijalar simulyatsiya uchun yaratilgan. Tarixiy real rekordlar emas.</div>
+</div>
+<div id="modalRoot"></div><div id="toastRoot"></div>
+<script>
+"use strict";
+const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const DIVISIONS=[
+["Minimumweight",105],["Light Flyweight",108],["Flyweight",112],["Super Flyweight",115],["Bantamweight",118],["Super Bantamweight",122],["Featherweight",126],["Super Featherweight",130],["Lightweight",135],["Super Lightweight",140],["Welterweight",147],["Super Welterweight",154],["Middleweight",160],["Super Middleweight",168],["Light Heavyweight",175],["Cruiserweight",200],["Heavyweight",null]
+];
+const STYLES=["Boxer","Swarmer","Slugger","Out-boxer","Counterpuncher","Boxer-puncher"];
+const TACTICS={Balanced:{label:"Balanced",atk:1,def:1,stam:1,hit:1},Aggressive:{label:"Aggressive",atk:1.24,def:.78,stam:1.35,hit:1.08},Defensive:{label:"Defensive",atk:.78,def:1.3,stam:.82,hit:.92},Counterpunching:{label:"Counterpunching",atk:.91,def:1.15,stam:.9,hit:1.18}, "Body attack":{label:"Body attack",atk:1.02,def:.91,stam:1.08,hit:1.02}, "Movement-focused":{label:"Movement-focused",atk:.83,def:1.22,stam:1.12,hit:.95}};
+const STYLEMOD={
+"Boxer":{Technique:8,Accuracy:5,Defense:3},"Swarmer":{Stamina:9,Speed:5,Clinch:2,Defense:-3},"Slugger":{Power:12,Chin:5,Speed:-5,Accuracy:-3},"Out-boxer":{Speed:8,Defense:8,Technique:4,Power:-3},"Counterpuncher":{Counterpunching:12,Defense:5,Accuracy:3,Stamina:-2},"Boxer-puncher":{Power:5,Technique:5,Accuracy:4}
+};
+const ATTRS=["Power","Speed","Accuracy","Defense","Chin","Stamina","Recovery","Counterpunching","Clinch","Technique"];
+const FIRST=["Jasur","Aziz","Bekzod","Sardor","Islom","Temur","Kamron","Rustam","Diyor","Akmal","Muhammad","Otabek","Daniel","Marco","Leon","Victor","Andre","Milan","David","Alex"];
+const LAST=["Karimov","Rasulov","Tursunov","Aliyev","Yusupov","Nazarov","Petrov","Santos","Williams","Johnson","Khan","Garcia","Novak","Miller","Brown","Silva","Ivanov","Okafor","Costa","Reyes"];
+const COUNTRIES=["Uzbekistan","USA","Mexico","Kazakhstan","United Kingdom","Japan","Cuba","Ukraine","Brazil","Philippines","Turkey","France"];
+const CITIES=["Tashkent","Samarqand","Buxoro","Andijon","Namangan","London","Las Vegas","Mexico City","Almaty","Tokyo","Havana","Manila"];
+const VENUES=["Toshkent Arena","Millennium Stadium","Grand Boxing Hall","Las Vegas Pavilion","National Sports Palace","Champions Dome","Royal Fight Center"];
+const ORGS=["WBA","WBC","IBF","WBO"];
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const int=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+function blankState(){return {version:2,player:null,world:[],year:2026,month:1,activeFight:null,offers:[],news:[],events:[],ledger:[],sponsors:[],rivalries:[],champions:{},rankings:{},bestRank:null,retired:false,settings:{autosave:true,aiPerMonth:9},history:[],lastAutosave:null,processedFightIds:[],financeMonth:null};}
+function normalizeSave(x){if(!x||typeof x!=="object"||!x.player||!Array.isArray(x.world))throw Error("Save tuzilmasi noto‘g‘ri");x.version=3;x.processedFightIds=Array.isArray(x.processedFightIds)?x.processedFightIds:[];x.ledger=Array.isArray(x.ledger)?x.ledger:[];x.history=Array.isArray(x.history)?x.history:[];x.news=Array.isArray(x.news)?x.news:[];x.events=Array.isArray(x.events)?x.events:[];x.offers=Array.isArray(x.offers)?x.offers:[];x.sponsors=Array.isArray(x.sponsors)?x.sponsors:[];x.rivalries=Array.isArray(x.rivalries)?x.rivalries:[];x.champions=x.champions&&typeof x.champions==="object"?x.champions:{};x.settings={autosave:true,aiPerMonth:9,...(x.settings||{})};for(const f of [x.player,...x.world]){if(!f||!f.id||!f.record||!f.attrs)throw Error("Bokschi ma’lumoti noto‘g‘ri");f.fights=Array.isArray(f.fights)?f.fights:[];f.titles=Array.isArray(f.titles)?f.titles:[];f.record={w:0,l:0,d:0,nc:0,ko:0,koLoss:0,...f.record};f.injuryMonths=Number(f.injuryMonths)||0;}return x;}
+let S=blankState(), page="dashboard", selectedDivision=8, rankingTab="Lightweight", fightTactic="Balanced", pendingTraining=null;
+function makeFighter(o={}){
+ const style=o.style||pick(STYLES), attrs={};
+ ATTRS.forEach(k=>attrs[k]=clamp(Math.round((o.attrs&&o.attrs[k]!==undefined?o.attrs[k]:int(42,72))+(STYLEMOD[style]?.[k]||0)),20,96));
+ return {id:o.id||uid(),name:o.name||pick(FIRST)+" "+pick(LAST),nickname:o.nickname||"",country:o.country||pick(COUNTRIES),city:o.city||pick(CITIES),age:o.age||int(20,31),height:o.height||int(163,198),reach:o.reach||int(165,205),stance:o.stance||pick(["Orthodox","Southpaw"]),style,division:o.division??8,attrs,record:o.record||{w:0,l:0,d:0,nc:0,ko:0,koLoss:0},rating:o.rating||Math.round(avg(Object.values(attrs))),potential:o.potential||int(60,91),popularity:o.popularity||int(8,32),money:o.money??int(500,5000),earnings:o.earnings||0,condition:o.condition??90,fatigue:o.fatigue||0,injury:o.injury||null,injuryMonths:o.injuryMonths||0,active:o.active!==false,retired:!!o.retired,rank:o.rank||null,titles:o.titles||[],titleDefenses:o.titleDefenses||0,streak:o.streak||0,lossStreak:o.lossStreak||0,fights:o.fights||[],careerStage:o.careerStage||"Prospect",lastFightMonth:o.lastFightMonth||0,createdYear:o.createdYear||2026,trainingThisMonth:o.trainingThisMonth||0,bestRank:o.bestRank||null};
+}
+function logNews(head,body=""){S.news.unshift({id:uid(),date:dateStr(),head,body});S.news=S.news.slice(0,90);S.events.unshift({date:dateStr(),text:head});S.events=S.events.slice(0,200)}
+function dateStr(){return `${String(S.month).padStart(2,"0")}/${S.year}`}
+function fullDate(){return `${S.year}-${String(S.month).padStart(2,"0")}`}
+function ledger(kind,amount,desc){if(!S.player)return;S.player.money=Math.round(S.player.money+amount);S.ledger.unshift({date:dateStr(),kind,amount,desc});S.ledger=S.ledger.slice(0,250)}
+function allFighters(){return S.player?[S.player,...S.world]:S.world}
+function fighterById(id){return allFighters().find(f=>f.id===id)}
+function recordText(f){return `${f.record.w}-${f.record.l}-${f.record.d}${f.record.nc?` (${f.record.nc} NC)`:""}`}
+function recordTotal(f){return f.record.w+f.record.l+f.record.d+f.record.nc}
+function fighterRating(f){let base=avg(Object.values(f.attrs));return Math.round(base*.72+f.popularity*.08+f.record.w*.25+f.titles.length*2+f.condition*.04-f.fatigue*.08)}
+function generateWorld(){
+ S.world=[]; S.champions={}; S.rankings={};
+ DIVISIONS.forEach((d,di)=>{
+   let list=[]; for(let i=0;i<22;i++){let f=makeFighter({division:di,age:int(20,35),attrs:Object.fromEntries(ATTRS.map(k=>[k,int(42,82)])),potential:int(60,94),popularity:int(8,60),money:int(1000,90000),createdYear:S.year-int(1,10)}); f.record={w:int(0,18),l:int(0,4),d:int(0,2),nc:0,ko:0,koLoss:0};f.record.ko=Math.min(f.record.w,int(0,Math.ceil(f.record.w*.7)));f.rating=fighterRating(f);list.push(f);S.world.push(f)}
+   list.sort((a,b)=>fighterRating(b)-fighterRating(a));let champ=list[0];champ.titles=[pick(ORGS)];S.champions[di]={};S.champions[di][champ.titles[0]]=champ.id;
+   // Other belts may be held by distinct top contenders; sometimes leave vacant.
+   ORGS.filter(x=>x!==champ.titles[0]).forEach(org=>{if(Math.random()>.16){let holder=list.find(f=>f.id!==champ.id&&!f.titles.length);if(holder){holder.titles.push(org);S.champions[di][org]=holder.id}}});
+ });
+ recalcRankings();
+}
+function recalcRankings(){
+ S.rankings={};
+ DIVISIONS.forEach((d,di)=>{
+  let list=S.world.filter(f=>f.division===di&&f.active&&!f.retired);
+  if(S.player&&S.player.division===di&&!S.player.retired)list.push(S.player);
+  list.sort((a,b)=>rankScore(b)-rankScore(a));
+  list.forEach((f,i)=>{f.rank=i+1;if(f===S.player&&(!S.bestRank||i+1<S.bestRank))S.bestRank=i+1;});
+  S.rankings[di]=list.map(f=>f.id);
+ });
+}
+function rankScore(f){return fighterRating(f)+f.record.w*1.3-f.record.l*2.3+f.streak*.8+f.titles.length*8+(f.active?0:-100)}
+function newCareer(data){
+ S=blankState();S.year=Number(data.year);S.month=1;
+ let f=makeFighter({name:data.name.trim(),nickname:data.nickname.trim(),country:data.country.trim(),city:data.city.trim(),age:+data.age,height:+data.height,reach:+data.reach,stance:data.stance,style:data.style,division:+data.division,createdYear:+data.year,attrs:Object.fromEntries(ATTRS.map(k=>[k,clamp(int(49,64)+(STYLEMOD[data.style]?.[k]||0),25,85)])),money:12000,condition:100});
+ f.popularity=12;f.record={w:0,l:0,d:0,nc:0,ko:0,koLoss:0};f.rating=fighterRating(f);f.careerHistory=[];S.player=f;
+ generateWorld();recalcRankings();logNews(`${f.name} professional boksga qadam qo‘ydi`,`Yangi istiqbolli bokschi ${f.city} shahridan.`);createOffers();save(true);page="dashboard";render();toast("Karyera yaratildi. Ringga xush kelibsiz!");
+}
+function createOffers(){
+ if(!S.player||S.player.retired||S.activeFight)return;
+ const p=S.player;let eligible=S.world.filter(f=>f.active&&!f.retired&&!f.injury&&f.division===p.division&&!f.fights.some(x=>x.date===fullDate()&&x.pending));
+ eligible.sort(()=>Math.random()-.5);let chosen=eligible.slice(0,5);
+ S.offers=chosen.map(o=>({id:uid(),opponentId:o.id,division:p.division,rounds:pick([4,6,8,10]),venue:pick(VENUES),year:S.year,month:Math.min(12,S.month+int(1,3)),purse:Math.round((1500+p.popularity*100+fighterRating(o)*45+int(0,2200))*(1+Math.random()*.25)),bonus:Math.random()>.55?int(500,2500):0,status:"Offer",title:false}));
+ if(!S.offers.length)logNews("Matchmaker yangi raqiblarni qidirmoqda","Hozircha mos raqib topilmadi.");
+}
+function offerAccept(id){
+ const o=S.offers.find(x=>x.id===id),p=S.player,opp=o&&fighterById(o.opponentId);
+ if(!o||!p||!opp||!opp.active||opp.retired||opp.injury||S.activeFight||p.injury||p.retired)return toast("Bu shartnomani hozir qabul qilib bo‘lmaydi.",true);
+ if(o.division!==p.division)return toast("Vazn toifasi mos emas.",true);
+ if(o.title&&!canTitleFight(p,o.division))return toast("Title Shot uchun talablar bajarilmagan.",true);
+ o.status="Accepted";o.fightDate=`${o.year}-${String(o.month).padStart(2,"0")}`;S.activeFight={offerId:o.id,offer:{...o},playerId:p.id,opponentId:opp.id,round:1,maxRounds:o.rounds,playerTactic:"Balanced",opponentTactic:"Balanced",rounds:[],started:false,finished:false,damageP:0,damageO:0,knockdownsP:0,knockdownsO:0,judges:[{p:0,o:0},{p:0,o:0},{p:0,o:0}],totalP:0,totalO:0};S.offers=S.offers.filter(x=>x.id!==id);logNews(`Jang rasman tasdiqlandi: ${p.name} vs ${opp.name}`,`${o.rounds} raund · ${o.venue} · ${dateStr()}`);save(true);page="fight";render();
+}
+function canTitleFight(p,di){let r=S.rankings[di]||[];return p.rank<=5&&p.record.w>=8}
+function train(type){
+ let p=S.player;if(!p||p.retired)return toast("Mashg‘ulot uchun faol bokschi kerak.",true);
+ if(p.injury)return toast("Jarohat sabab mashg‘ulot mumkin emas.",true);
+ if(p.trainingThisMonth>=8)return toast("Bu oy uchun 8 ta mashg‘ulot limiti tugadi.",true);
+ if(p.fatigue>82)return toast("Charchoq yuqori. Avval dam oling.",true);
+ const map={Strength:["Power","Chin"],Speed:["Speed","Accuracy"],Technique:["Technique","Accuracy"],Endurance:["Stamina","Recovery"],Defense:["Defense","Chin"],Counterpunching:["Counterpunching","Accuracy"],Clinch:["Clinch","Stamina"],Sparring:["Technique","Defense","Speed"]};
+ const cost=type==="Sparring"?950:450; if(p.money<cost)return toast("Mablag‘ yetarli emas.",true);
+ ledger("expense",-cost,`${type} mashg‘uloti`);
+ let before={...p.attrs};let intensity= p.fatigue>55?.45:.85;
+ (map[type]||[]).forEach((a,i)=>{let gain=(Math.random()*.45+.25)*intensity*(p.attrs[a]>85?.45:1);p.attrs[a]=clamp(p.attrs[a]+gain,0,100)});
+ p.fatigue=clamp(p.fatigue+int(type==="Sparring"?13:7, type==="Sparring"?22:14),0,100);p.condition=clamp(p.condition-int(3,8),10,100);p.trainingThisMonth++;
+ if(type==="Sparring"&&Math.random()<.08){p.injury=pick(["Qo‘l shikastlanishi","Qovurg‘a lat yeyishi","Yuz jarohati"]);p.injuryMonths=int(1,2);logNews(`${p.name} mashg‘ulotda jarohat oldi`,p.injury)}
+ let changes=Object.keys(before).filter(k=>p.attrs[k]>before[k]).map(k=>`${k} +${(p.attrs[k]-before[k]).toFixed(1)}`).join(", ");
+ logNews(`${p.name}: ${type} mashg‘uloti`,changes);save(true);render();toast(`${type}: ${changes||"tiklanish kerak"}`);
+}
+function restDay(){
+ let p=S.player;if(!p||p.retired)return;
+ p.fatigue=clamp(p.fatigue-22,0,100);p.condition=clamp(p.condition+15,0,100);if(p.injury){p.injuryMonths=Math.max(0,p.injuryMonths-1);if(!p.injuryMonths){p.injury=null;logNews(`${p.name} jarohatdan qaytdi`)}}
+ if(p.money>0)ledger("expense",-Math.min(180,p.money),"Kundalik xarajat");
+ p.trainingThisMonth=Math.max(0,p.trainingThisMonth-1);save(true);render();toast("Dam olish yakunlandi.");
+}
+function getTactic(){return TACTICS[fightTactic]||TACTICS.Balanced}
+function simulateRound(){
+ const F=S.activeFight,p=S.player,o=fighterById(F.opponentId);if(!F||F.finished||!o)return;
+ if(!F.started){F.started=true;logNews("Jang boshlandi",`${p.name} vs ${o.name}`)}
+ const round=F.round, pt=getTactic(), ot=TACTICS[F.opponentTactic]||TACTICS.Balanced;
+ let ps={attempt:0,land:0,power:0,damage:0,kd:0},os={attempt:0,land:0,power:0,damage:0,kd:0};
+ const execute=(a,b,tac,defTac,side)=>{
+  let stamina=a.attrs.Stamina*(1-a.fatigue/180)*(.55+a.condition/220);
+  let attempts=Math.max(3,Math.round((7+a.attrs.Speed/8+a.attrs.Technique/15)*tac.atk*(.65+stamina/130)*(.75+Math.random()*.5)));
+  let acc=clamp((.20+a.attrs.Accuracy/180+a.attrs.Technique/260-a.fatigue/350)*tac.hit/defTac.def,.08,.78);
+  let landed=0,power=0,damage=0;
+  for(let i=0;i<attempts;i++){if(Math.random()<acc){landed++;let isPower=Math.random()<.35+a.attrs.Power/300;let hit=(isPower?1.6:1)*(a.attrs.Power/65)*(.7+Math.random()*.65);power+=isPower?1:0;damage+=hit}}
+  a.fatigue=clamp(a.fatigue+attempts*.52*tac.stam,0,100);
+  a.condition=clamp(a.condition-(attempts*.14),10,100);
+  return {attempt:attempts,land:landed,power,damage,acc:attempts?landed/attempts:0};
+ };
+ let pr=execute(p,o,pt,ot,"p"),orr=execute(o,p,ot,pt,"o");
+ let kdP=0,kdO=0;
+ const knock=(damage,def)=>Math.random()<clamp((damage/30)*(1-def.attrs.Chin/140)*(.65+def.fatigue/100),0,.24);
+ if(knock(pr.damage,o)){kdO=1;F.knockdownsP++;o.condition=clamp(o.condition-9,10,100);F.damageO+=9}
+ if(knock(orr.damage,p)){kdP=1;F.knockdownsO++;p.condition=clamp(p.condition-9,10,100);F.damageP+=9}
+ pr.kd=kdP;orr.kd=kdO;
+ F.totalP+=pr.land;F.totalO+=orr.land;
+ let pScore=pr.land*1.1+pr.power*.65+pr.damage*.35+kdO*7+Math.random()*3;
+ let oScore=orr.land*1.1+orr.power*.65+orr.damage*.35+kdP*7+Math.random()*3;
+ F.judges.forEach((j,i)=>{let diff=(pScore-oScore)+(Math.random()*4-2);if(kdO)diff+=2;if(kdP)diff-=2;if(diff>0)j.p+=10,j.o+=9;else if(diff<0)j.p+=9,j.o+=10;else j.p+=10,j.o+=10;});
+ let stoppage=null;
+ // Damage/condition and late-round stoppage chances.
+ let pRisk=(orr.damage*(1-p.attrs.Chin/130)+F.knockdownsO*5)/100;
+ let oRisk=(pr.damage*(1-o.attrs.Chin/130)+F.knockdownsP*5)/100;
+ if(kdP&&Math.random()<.16+F.knockdownsO*.04)stoppage={winner:o,loser:p,method:"KO"};
+ else if(kdO&&Math.random()<.16+F.knockdownsP*.04)stoppage={winner:p,loser:o,method:"KO"};
+ else if(Math.random()<clamp(pRisk*.12,0,.08))stoppage={winner:o,loser:p,method:"TKO"};
+ else if(Math.random()<clamp(oRisk*.12,0,.08))stoppage={winner:p,loser:o,method:"TKO"};
+ const summary={round,p:pr,o:orr,tacticP:fightTactic,tacticO:F.opponentTactic,kdP,kdO,scoreP:pScore,scoreO:oScore,comment:roundComment(pr,orr,kdP,kdO,p,o)};F.rounds.push(summary);
+ if(stoppage){finishFight(stoppage.winner.id,stoppage.method,round);return}
+ if(round>=F.maxRounds){finishFight(null,"Decision",round);return}
+ F.round++; // AI adjusts against repeated tactics.
+ if(Math.random()<.45){F.opponentTactic=pick(["Balanced","Aggressive","Defensive","Counterpunching","Body attack","Movement-focused"])}
+ save(true);render();
+}
+function roundComment(a,b,kp,ko,p,o){
+ if(ko)return `${p.name} aniq hujumdan so‘ng raqibini nokdaunga uchratdi!`;
+ if(kp)return `${o.name} kuchli zarbadan so‘ng raqibini nokdaunga uchratdi!`;
+ if(a.land>b.land+5)return `${p.name} kombinatsiyalar bilan ustunlik qildi.`;
+ if(b.land>a.land+5)return `${o.name} aniq zarbalar bilan javob berdi.`;
+ return "Teng kurash: ikkala bokschi ham masofa va temp uchun kurashdi.";
+}
+function finishFight(winnerId,method,round){
+ const F=S.activeFight,p=S.player,o=F&&fighterById(F.opponentId),offer=F&&(F.offer||S.offers.find(x=>x.id===F.offerId))||{purse:1500,bonus:0,venue:"Arena",year:S.year,month:S.month,rounds:F?.maxRounds||4};
+ if(!F||!p||!o||F.finished)return;
+ const fightKey=F.offerId||F.id;if(S.processedFightIds?.includes(fightKey))return;F.finished=true;S.processedFightIds=S.processedFightIds||[];S.processedFightIds.push(fightKey);if(S.processedFightIds.length>500)S.processedFightIds=S.processedFightIds.slice(-500);let winner=winnerId?fighterById(winnerId):null;
+ let scores=F.judges.map(j=>({p:j.p,o:j.o}));let pVotes=scores.filter(x=>x.p>x.o).length,oVotes=scores.filter(x=>x.o>x.p).length;
+ let official=method;
+ if(method==="Decision"){
+  if(pVotes===oVotes){official="Draw";winner=null;}
+  else {
+   winner=pVotes>oVotes?p:o;
+   official=(pVotes===3||oVotes===3)?"Unanimous Decision":(pVotes===2&&oVotes===1||oVotes===2&&pVotes===1)?"Split Decision":"Majority Decision";
+  }
+ }
+ let pWin=winner?.id===p.id, oWin=winner?.id===o.id;
+ if(!winner){p.record.d++;o.record.d++;p.streak=0;o.streak=0}
+ else if(pWin){p.record.w++;o.record.l++;p.streak++;o.lossStreak++;p.lossStreak=0;o.streak=0;if(method==="KO"||method==="TKO"){p.record.ko++;o.record.koLoss++}}
+ else{o.record.w++;p.record.l++;o.streak++;p.lossStreak++;o.lossStreak=0;p.streak=0;if(method==="KO"||method==="TKO"){o.record.ko++;p.record.koLoss++}}
+ let purse=offer.purse||1500,bonus=offer.bonus||0;let gross=purse+(pWin?bonus:0),manager=Math.round(gross*.08),promoter=Math.round(gross*.1),trainer=500;
+ ledger("income",gross,`Jang purse${pWin&&bonus?` + bonus ${money(bonus)}`:""}`);ledger("expense",-manager,"Manager ulushi (8%)");ledger("expense",-promoter,"Promouter ulushi (10%)");ledger("expense",-trainer,"Trainer to‘lovi");
+ p.popularity=clamp(p.popularity+(pWin?int(3,8):int(-2,2))+(method==="KO"||method==="TKO"?3:0),0,100);
+ o.popularity=clamp(o.popularity+(oWin?int(2,5):int(-1,2)),0,100);
+ p.condition=clamp(p.condition-int(8,18),10,100);o.condition=clamp(o.condition-int(8,18),10,100);
+ p.lastFightMonth=S.month+S.year*12;o.lastFightMonth=p.lastFightMonth;
+ let resultP=pWin?`W — ${official}`:winner?`L — ${official}`:"D — Draw";
+ let resultO=oWin?`W — ${official}`:winner?`L — ${official}`:"D — Draw";
+ const hist=(self,opp,result,ownScore,oppScore)=>({id:F.offerId,date:fullDate(),opponentId:opp.id,opponent:opp.name,opponentRecordAtTime:recordText(opp),result,method:official,round,venue:offer.venue||"Arena",scores:ownScore,opponentScores:oppScore,division:self.division,purse:self===p?gross:Math.round(gross*.65),knockdownsFor:self===p?F.knockdownsP:F.knockdownsO,knockdownsAgainst:self===p?F.knockdownsO:F.knockdownsP});
+ p.fights.unshift(hist(p,o,resultP,scores.map(x=>x.p),scores.map(x=>x.o)));o.fights.unshift(hist(o,p,resultO,scores.map(x=>x.o),scores.map(x=>x.p)));
+ if(pWin&&method!=="Draw")p.earnings+=gross;
+ if(oWin)o.earnings+=Math.round(gross*.65);
+ p.age+=0; o.age+=0;
+ // Title eligibility and belt transfer; title fights only if explicitly set.
+ if(offer.title){const belts=S.champions[p.division]||(S.champions[p.division]={});const org=offer.org;if(org&&belts[org]===o.id){if(pWin){belts[org]=p.id;if(!p.titles.includes(org))p.titles.push(org);o.titles=o.titles.filter(x=>x!==org);p.titleDefenses=0;logNews(`${org} kamari egasini o‘zgartirdi`,`${p.name} yangi chempion bo‘ldi.`)}else if(oWin){o.titleDefenses=(o.titleDefenses||0)+1;logNews(`${org} kamari himoya qilindi`,`${o.name} kamarini saqlab qoldi.`)}}}
+ recalcRankings();let headline=winner?`${winner.name} ${official} orqali g‘alaba qozondi`:"Jang durang bilan yakunlandi";
+ logNews(headline,`${p.name} vs ${o.name} · ${round} raund · ${offer.venue||"Arena"}`);
+ if(pWin&&p.streak>=5)S.rivalries.unshift({a:p.id,b:o.id,heat:3,reason:"Ketma-ket janglar"});S.rivalries=S.rivalries.slice(0,30);
+ S.history.unshift({date:fullDate(),headline,playerResult:resultP,opponent:o.name,method:official,round,venue:offer.venue,scores});
+ S.activeFight=null;S.offers=[];createOffers();save(true);page="history";render();showResult({p,o,winner,official,round,scores,offer,knockdownsP:F.knockdownsP,knockdownsO:F.knockdownsO});
+}
+function showResult(r){
+ const {p,o,winner,official,round,scores,offer}=r;
+ $("#modalRoot").innerHTML=`<div class="modalback"><div class="modal"><div class="between"><h2 class="gold">RASMIY NATIJA</h2><button id="closeModal">✕</button></div><div class="fightarena"><div class="tag goldtag">${esc(official)}</div><h2 style="margin:12px 0">${winner?esc(winner.name):"Durang"}</h2><p>${esc(p.name)} vs ${esc(o.name)} · ${round}-raund</p><div class="stats"><div class="stat"><div class="label">Sizning rekord</div><div class="value">${recordText(p)}</div></div><div class="stat"><div class="label">Raqib rekordi</div><div class="value">${recordText(o)}</div></div></div></div><h3 class="subhead">Hakamlar kartasi</h3><div class="tablewrap"><table><thead><tr><th>Hakam</th><th>Siz</th><th>Raqib</th></tr></thead><tbody>${scores.map((s,i)=>`<tr><td>${i+1}-hakam</td><td>${s.p}</td><td>${s.o}</td></tr>`).join("")}</tbody></table></div><p class="muted" style="margin-top:12px">Jang daromadi va xarajatlar moliyaviy ledgerga yozildi.</p><button class="primary" id="resultOk">Davom etish</button></div></div>`;
+ $("#closeModal").onclick=$("#resultOk").onclick=()=>{$("#modalRoot").innerHTML="";render()};
+}
+function advanceMonth(){
+ if(!S.player||S.retired)return;
+ if(S.activeFight)return toast("Faol jangni yakunlang.",true);
+ S.month++;if(S.month>12){S.month=1;S.year++}
+ let p=S.player;p.age+=p.age<60&&S.month===1?1/1:0;p.trainingThisMonth=0;
+ p.fatigue=clamp(p.fatigue-18-p.attrs.Recovery*.06,0,100);p.condition=clamp(p.condition+18,0,100);
+ if(p.injury){p.injuryMonths=Math.max(0,p.injuryMonths-1);if(!p.injuryMonths){p.injury=null;logNews(`${p.name} jarohatdan to‘liq tiklandi`)}}
+ // age and progression/decline
+ if(p.age>31){ATTRS.forEach(a=>{p.attrs[a]=clamp(p.attrs[a]+(p.potential>avg(Object.values(p.attrs))&&p.age<35?.05:-.12),20,100)})}
+ let aiN=S.settings.aiPerMonth||9;
+ for(let i=0;i<aiN;i++)simulateAIFight();
+ S.sponsors.forEach(sp=>{if(sp.active&&sp.months>0){ledger("income",sp.monthly,`${sp.name} sponsorship`);sp.months--;if(sp.months<=0){sp.active=false;logNews(`${sp.name} homiylik shartnomasi yakunlandi`);}}});
+ S.world.forEach(f=>{if(S.month===1)f.age++;f.fatigue=clamp(f.fatigue-12,0,100);f.condition=clamp(f.condition+10,15,100);if(f.injuryMonths){f.injuryMonths--;if(!f.injuryMonths)f.injury=null}if(f.age>37&&Math.random()<.04){f.active=false;f.retired=true;logNews(`${f.name} faoliyatini yakunladi`)}});
+ recalcRankings();S.offers=[];createOffers();logNews(`${dateStr()} — boks olamida yangi oy`,`AI janglari: ${aiN} ta simulyatsiya qilindi.`);save(true);render();toast(`${dateStr()} ga o‘tildi.`);
+}
+function simulateAIFight(){
+ let eligible=S.world.filter(f=>f.active&&!f.retired&&!f.injury&&f.condition>25);
+ if(eligible.length<2)return;
+ let a=pick(eligible),opts=eligible.filter(b=>b.id!==a.id&&b.division===a.division);if(!opts.length)return;opts.sort((x,y)=>Math.abs(fighterRating(x)-fighterRating(a))-Math.abs(fighterRating(y)-fighterRating(a)));let b=opts[0];
+ let ra=fighterRating(a),rb=fighterRating(b),pa=clamp(.5+(ra-rb)*.009+(a.attrs.Accuracy-b.attrs.Defense)*.002,.2,.8),r=Math.random();
+ let winner=r<pa?a:r>1-pa?b:null,method=winner?(Math.random()<.20?"KO":Math.random()<.14?"TKO":"Decision"):"Draw";
+ if(!winner){a.record.d++;b.record.d++;a.streak=b.streak=0;a.lossStreak=b.lossStreak=0}else{winner.record.w++;(winner===a?b:a).record.l++;winner.streak++;winner.lossStreak=0;(winner===a?b:a).lossStreak++;(winner===a?b:a).streak=0;if(method==="KO"||method==="TKO"){winner.record.ko++;(winner===a?b:a).record.koLoss++}}
+ a.fights.unshift({date:fullDate(),opponentId:b.id,opponent:b.name,result:winner===a?`W — ${method}`:winner===b?`L — ${method}`:"D — Draw",method,round:int(2,10),venue:pick(VENUES),division:a.division});b.fights.unshift({date:fullDate(),opponentId:a.id,opponent:a.name,result:winner===b?`W — ${method}`:winner===a?`L — ${method}`:"D — Draw",method,round:int(2,10),venue:pick(VENUES),division:b.division});
+ a.popularity=clamp(a.popularity+(winner===a?2:-1),0,100);b.popularity=clamp(b.popularity+(winner===b?2:-1),0,100);
+ if(winner){let purse=int(800,4000);winner.money+=purse;winner.earnings+=purse}
+ // Belt changes if a titleholder loses to top challenger, then belts vacated if retired.
+ let belts=S.champions[a.division]||{};for(let org of ORGS){let champId=belts[org];if(champId&&champId===a.id&&winner===b&&b.rank&&b.rank<=8){belts[org]=b.id;if(!b.titles.includes(org))b.titles.push(org);a.titles=a.titles.filter(t=>t!==org);logNews(`${org} chempioni almashdi`,`${b.name} yangi chempion.`)}else if(champId&&champId===b.id&&winner===a&&a.rank&&a.rank<=8){belts[org]=a.id;if(!a.titles.includes(org))a.titles.push(org);b.titles=b.titles.filter(t=>t!==org);logNews(`${org} chempioni almashdi`,`${a.name} yangi chempion.`)}}
+}
+function startTitleOffer(org){
+ let p=S.player;if(!p||p.rank>5||p.record.w<8)return toast("Title Shot: top-5 reyting va kamida 8 g‘alaba talab qilinadi.",true);
+ let holderId=S.champions[p.division]?.[org],opp=fighterById(holderId);
+ if(!opp||opp.id===p.id)return toast("Bu kamar uchun boshqa chempion mavjud emas.",true);
+ if(S.activeFight)return toast("Faol jang mavjud.",true);
+ let o={id:uid(),opponentId:opp.id,division:p.division,rounds:12,venue:pick(VENUES),year:S.year,month:Math.min(12,S.month+2),purse:Math.round(10000+p.popularity*500),bonus:5000,status:"Offer",title:true,org};
+ S.offers.unshift(o);page="offers";render();toast(`${org} Title Shot taklifi qo‘shildi.`);
+}
+function retire(){if(!S.player||S.player.retired)return; if(!confirm("Faoliyatni yakunlashni tasdiqlaysizmi? Bu qaror qaytarilmaydi."))return;S.player.retired=true;S.retired=true;logNews(`${S.player.name} professional boksdan nafaqaga chiqdi`);S.player.legacy=Math.round(S.player.record.w*2+S.player.record.ko*1.5+S.player.titles.length*12+(S.bestRank?Math.max(0,25-S.bestRank):0)+S.player.popularity*.3);save(true);page="profile";render()}
+function save(silent=false){
+ try{const data=JSON.stringify(S);localStorage.setItem("boxingLegacySave",data);if(!silent)toast("Karyera saqlandi.");return true}
+ catch(e){if(!silent)toast("Saqlash muvaffaqiyatsiz. Export orqali faylga saqlang.",true);return false}
+}
+function load(){
+ try{let raw=localStorage.getItem("boxingLegacySave");if(!raw){toast("Saqlangan karyera topilmadi.",true);return false}let parsed=normalizeSave(JSON.parse(raw));S=parsed;recalcRankings();page=S.activeFight?"fight":"dashboard";render();toast("Karyera yuklandi.");return true}
+ catch(e){toast("Saqlangan fayl buzilgan yoki mos emas. Import/Exportdan foydalaning.",true);return false}
+}
+function exportSave(){let blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="boxing-legacy-save.json";a.click();URL.revokeObjectURL(url);toast("Save eksport qilindi.")}
+function importSave(file){let r=new FileReader();r.onload=()=>{try{let x=normalizeSave(JSON.parse(r.result));S=x;recalcRankings();save(true);render();toast("Save import qilindi.")}catch(e){toast("Import fayli yaroqsiz.",true)}};r.readAsText(file)}
+function toast(msg,error=false){const el=$("#toastRoot");el.innerHTML=`<div class="toast ${error?"bad":""}">${esc(msg)}</div>`;setTimeout(()=>{el.innerHTML=""},2800)}
+function statCard(label,val,sub="",color=""){return `<div class="stat"><div class="label">${esc(label)}</div><div class="value ${color}">${esc(val)}</div><small>${esc(sub)}</small></div>`}
+function progress(label,val,color=""){return `<div class="meterlabel"><span>${esc(label)}</span><b>${Math.round(val)}%</b></div><div class="bar ${color}"><i style="width:${clamp(val,0,100)}%"></i></div>`}
+function fighterCard(f){return `<div class="fighter"><div class="avatar">${esc(f.name.split(" ").map(x=>x[0]).join("").slice(0,2))}</div><div><b>${esc(f.name)}</b><div class="muted">${esc(f.nickname?`“${f.nickname}” · `:"")}${esc(f.style)} · ${recordText(f)}</div></div></div>`}
+function panel(title,body,extra=""){return `<section class="panel"><div class="between"><h2>${title}</h2>${extra}</div>${body}</section>`}
+function nav(){const items=[["dashboard","⌂","Dashboard"],["profile","◉","Bokschi profili"],["training","✦","Mashg‘ulot"],["offers","⚑","Jang takliflari"],["fight","▣","Joriy jang"],["rankings","↗","Reytinglar"],["belts","♛","Kamarlar"],["world","◎","Boks olami"],["calendar","▦","Kalendar"],["finances","＄","Moliya"],["team","♙","Jamoa va shartnomalar"],["news","▤","Yangiliklar"],["history","☷","Jang tarixi"],["saves","▣","Saqlash / yuklash"],["settings","⚙","Sozlamalar"]];
+ return `<aside class="sidebar">${items.map(([id,ico,label])=>`<button class="navbtn ${page===id?"active":""}" data-page="${id}"><span>${ico}</span><span class="navtext">${label}</span></button>`).join("")}</aside>`}
+function dashboard(){
+ const p=S.player;if(!p)return creation();
+ let next=S.offers[0],op=next&&fighterById(next.opponentId),r=S.rankings[p.division]||[],titleCount=p.titles.length;
+ return `<section class="panel hero"><div class="tag goldtag">${p.retired?"CAREER COMPLETE":"PROFESSIONAL CAREER"}</div><h2>${esc(p.name)} ${p.nickname?`<span class="gold">“${esc(p.nickname)}”</span>`:""}</h2><p>${esc(p.country)} · ${esc(DIVISIONS[p.division][0])} · ${esc(p.stance)} · ${esc(p.style)}. Ringdagi yo‘lingizni rejalashtiring, mashq qiling va tarix yarating.</p><div class="row"><span class="tag">${recordText(p)}</span><span class="tag">#${p.rank||"—"} Ranking</span><span class="tag goldtag">${titleCount?titleCount+" ta kamar":"Hali kamar yo‘q"}</span><span class="tag">${p.age} yosh</span></div></section>
+ <div class="stats">${statCard("Professional rekord",recordText(p),`${p.record.ko} KO/TKO g‘alaba`)}${statCard("Reyting",p.rank?`#${p.rank}`:"Unranked",DIVISIONS[p.division][0])}${statCard("Mablag‘",money(p.money),"Joriy balans","gold")}${statCard("Karyera daromadi",money(p.earnings),"Janglardan tushgan")}</div>
+ <div class="grid2" style="margin-top:16px">${panel("Holat",`${progress("Condition",p.condition,"green")}${progress("Stamina",p.attrs.Stamina-p.fatigue*.4)}${progress("Fatigue",p.fatigue,"red")}<div class="row" style="margin-top:12px">${p.injury?`<span class="tag redtag">Jarohat: ${esc(p.injury)} (${p.injuryMonths} oy)</span>`:`<span class="tag">Jarohat yo‘q</span>`}${p.retired?'<span class="tag goldtag">Nafaqada</span>':""}</div>`,`<span class="tag">${dateStr()}</span>`)}
+ ${panel("Keyingi jang",next&&op?`${fighterCard(op)}<div class="row" style="margin:12px 0"><span class="tag goldtag">${next.rounds} raund</span><span class="tag">${esc(VENUES.includes(next.venue)?next.venue:"Arena")}</span><span class="tag">${money(next.purse)} purse</span></div><button class="primary" data-go="offers">Taklifni ko‘rish</button>`:`<div class="empty"><strong>Hozircha jang yo‘q</strong>Jang takliflari bo‘limini tekshiring.</div><button data-go="offers">Jang takliflari</button>`)}
+ ${panel("So‘nggi natijalar",p.fights.length?p.fights.slice(0,4).map(f=>`<div class="result"><div class="between"><b>${esc(f.opponent)}</b><span class="tag ${f.result?.startsWith("W")?"goldtag":f.result?.startsWith("L")?"redtag":""}">${esc(f.result||"Fight")}</span></div><small class="muted">${esc(f.date||"")} · ${esc(f.method||"")}</small></div>`).join(""):`<div class="empty"><strong>Yangi professional</strong>Birinchi jangingiz hali oldinda.</div>`)}
+ ${panel("Karyera maqsadlari",`<div class="result"><b>1. Rekordni qurish</b><div class="muted">Kamida 8 g‘alaba va top-5 ranking orqali Title Shot imkoniyatini oching.</div><div class="bar" style="margin-top:8px"><i style="width:${Math.min(100,p.record.w/8*100)}%"></i></div></div><div class="result"><b>2. Chempionlikka intilish</b><div class="muted">${p.titles.length?`Sizda ${p.titles.join(", ")} kamar(lar)i mavjud.`:"To‘rt yirik tashkilot kamarlariga da’vogarlik qiling."}</div></div><div class="result"><b>3. Legacy yaratish</b><div class="muted">G‘alabalar, raqib sifati va faoliyat davomiyligi tarixingizni belgilaydi.</div></div>`)}
+ </div>`;
+}
+function creation(){
+ return `<section class="panel hero"><div class="tag goldtag">NEW CAREER · ${S.year}</div><h2>Afsonangizni boshlang.</h2><p>O‘z bokschingizni yarating, jamoa tuzing, janglarda g‘alaba qozoning va chempionlik sari ko‘tariling. Bu dunyo to‘liq simulyatsiya qilingan.</p></section><section class="panel"><h2>Bokschi yaratish</h2><p class="muted">Majburiy maydonlarni to‘ldiring. Boshlang‘ich atributlar tanlangan uslubga mos ravishda yaratiladi.</p><form id="createForm"><div class="formgrid">
+ <div class="field"><label>To‘liq ism *</label><input name="name" required minlength="3" maxlength="50" placeholder="Masalan, Jasur Karimov"></div>
+ <div class="field"><label>Nickname</label><input name="nickname" maxlength="24" placeholder="The Lion"></div>
+ <div class="field"><label>Mamlakat *</label><input name="country" required value="Uzbekistan"></div>
+ <div class="field"><label>Shahar *</label><input name="city" required value="Tashkent"></div>
+ <div class="field"><label>Yosh (18–40) *</label><input name="age" type="number" required min="18" max="40" value="22"></div>
+ <div class="field"><label>Bo‘y (cm) *</label><input name="height" type="number" required min="145" max="225" value="178"></div>
+ <div class="field"><label>Reach (cm) *</label><input name="reach" type="number" required min="145" max="240" value="180"></div>
+ <div class="field"><label>Stance *</label><select name="stance"><option>Orthodox</option><option>Southpaw</option></select></div>
+ <div class="field"><label>Boxing style *</label><select name="style">${STYLES.map(x=>`<option>${x}</option>`).join("")}</select></div>
+ <div class="field"><label>Boshlanish yili *</label><input name="year" type="number" min="1900" max="2200" value="2026" required></div>
+ <div class="field"><label>Vazn toifasi *</label><select name="division">${DIVISIONS.map((d,i)=>`<option value="${i}" ${i===8?"selected":""}>${d[0]}${d[1]?" — "+d[1]+" lb":""}</option>`).join("")}</select></div>
+ </div><div class="notice">Sizning raqiblaringiz va chempionliklar tanlangan yildan boshlab yaratiladigan muqobil boks olamiga tegishli. Tarixiy real rekordlar emas.</div><button class="primary" type="submit">Karyerani boshlash →</button></form></section>`;
+}
+function profile(){
+ const p=S.player;if(!p)return creation();
+ return `<section class="panel"><div class="between"><div>${fighterCard(p)}<p class="muted" style="margin:8px 0 0">${esc(p.city)}, ${esc(p.country)} · ${p.height} cm · Reach ${p.reach} cm · ${esc(p.stance)}</p></div>${p.retired?'<span class="tag goldtag">RETIRED</span>':'<button class="danger" id="retireBtn">Nafaqaga chiqish</button>'}</div></section><div class="stats">${statCard("Rekord",recordText(p),`${recordTotal(p)} professional jang`)}${statCard("KO/TKO",`${p.record.ko}-${p.record.koLoss}`,"G‘alaba — mag‘lubiyat")}${statCard("Win streak",p.streak,"Ketma-ket g‘alaba")}${statCard("Popularity",Math.round(p.popularity)+"/100","Muxlislar qiziqishi")}</div><section class="panel"><h2>Atributlar</h2><div class="grid2">${ATTRS.map(a=>`<div>${progress(a,p.attrs[a])}</div>`).join("")}</div></section><section class="panel"><h2>Career legacy</h2><div class="grid3">${statCard("Eng yaxshi ranking",p.bestRank||S.bestRank||"—","Faoliyatdagi eng yuqori")}${statCard("Kamarlar",p.titles.length,p.titles.join(", ")||"Hali yo‘q")}${statCard("Legacy score",p.retired?(p.legacy||0):Math.round(p.record.w*2+p.record.ko*1.5+p.titles.length*12+p.popularity*.3),"Taxminiy baho")}</div>${p.retired?`<div class="notice">Faoliyat yakuni: ${recordText(p)}. ${p.legacy>=100?"Hall of Fame nomzodi!":"Boks tarixida o‘z o‘rningiz qoldi."}</div>`:""}</section>`;
+}
+function trainingPage(){
+ let p=S.player;if(!p)return creation();const types=["Strength","Speed","Technique","Endurance","Defense","Counterpunching","Clinch","Sparring"];
+ return `<section class="panel"><div class="between"><div><h2>Training camp</h2><p class="muted">Har bir mashg‘ulot atributlarni oz-ozdan oshiradi, ammo fatigue va xarajatlarni boshqaring.</p></div><span class="tag goldtag">${p.trainingThisMonth}/8 bu oy</span></div><div class="stats">${statCard("Condition",Math.round(p.condition)+"%","Jismoniy tayyorgarlik")}${statCard("Fatigue",Math.round(p.fatigue)+"%","Charchoq",p.fatigue>70?"bad":"")}${statCard("Jarohat",p.injury||"Yo‘q",p.injury?`${p.injuryMonths} oy`:"Sog‘lom")}${statCard("Mablag‘",money(p.money),"Mashg‘ulotlar uchun")}</div>${p.injury?`<div class="notice warn">Jarohat sabab mashg‘ulotlar yopiq. Dam olish yoki kalendarni oldinga surish orqali tiklaning.</div>`:""}<div class="grid2" style="margin-top:14px">${types.map(t=>`<div class="result"><div class="between"><h3>${t}</h3><span class="tag">${t==="Sparring"?"$950":"$450"}</span></div><p class="muted">${({Strength:"Power va Chin",Speed:"Speed va Accuracy",Technique:"Technique va Accuracy",Endurance:"Stamina va Recovery",Defense:"Defense va Chin",Counterpunching:"Counterpunching va Accuracy",Clinch:"Clinch va Stamina",Sparring:"Technique, Defense va Speed; jarohat xavfi"})[t]}</p><button data-train="${t}" ${p.injury||p.retired||p.trainingThisMonth>=8||p.fatigue>82||p.money<(t==="Sparring"?950:450)?"disabled":""}>Mashq qilish</button></div>`).join("")}</div><div class="row" style="margin-top:12px"><button class="primary" id="restBtn">Dam olish / tiklanish</button><button id="advanceBtn" ${S.activeFight?"disabled":""}>Keyingi oy →</button></div></section>`;
+}
+function offersPage(){
+ let p=S.player;if(!p)return creation();
+ return `<section class="panel"><div class="between"><div><h2>Jang takliflari</h2><p class="muted">Raqib, purse va tayyorgarlikni baholang. Jang qabul qilingach, bitta faol shartnoma ochiladi.</p></div><button id="refreshOffers" ${S.activeFight||p.retired?"disabled":""}>Yangilash</button></div>${S.activeFight?`<div class="notice warn">Faol jang mavjud. Avval uni yakunlang.</div>`:""}${S.offers.length?`<div class="grid2">${S.offers.map(o=>{let f=fighterById(o.opponentId);return f?`<div class="result"><div class="between"><span class="tag ${o.title?"goldtag":""}">${o.title?esc(o.org)+" TITLE SHOT":"Fight offer"}</span><span class="tag">${o.rounds} raund</span></div><div style="margin:12px 0">${fighterCard(f)}</div><div class="grid2"><div><small class="muted">Rating</small><b style="display:block">${fighterRating(f)}</b></div><div><small class="muted">Rekord</small><b style="display:block">${recordText(f)}</b></div><div><small class="muted">Purse</small><b class="gold" style="display:block">${money(o.purse)}</b></div><div><small class="muted">Sana / joy</small><b style="display:block">${o.month}/${o.year}</b><small class="muted">${esc(o.venue)}</small></div></div><p class="muted" style="margin-top:10px">Sizga nisbatan reyting farqi: ${fighterRating(p)-fighterRating(f)>0?"+":""}${fighterRating(p)-fighterRating(f)}</p><div class="row"><button class="primary" data-accept="${o.id}" ${S.activeFight||p.injury||p.retired?"disabled":""}>Shartnomani qabul qilish</button><button data-reject="${o.id}">Rad etish</button></div></div>`:""}).join("")}</div>`:`<div class="empty"><strong>Takliflar yo‘q</strong>Yangilash tugmasini bosing yoki keyingi oyga o‘ting.</div>`}</section>`;
+}
+function fightPage(){
+ let F=S.activeFight,p=S.player;if(!p)return creation();
+ if(!F)return `<section class="panel"><div class="empty"><strong>Hozir faol jang yo‘q</strong>Yangi shartnomani qabul qilib ringga chiqing.</div><button class="primary" data-go="offers">Jang takliflarini ochish</button></section>`;
+ let o=fighterById(F.opponentId);if(!o)return `<section class="panel"><div class="notice warn">Raqib ma’lumoti topilmadi. Save faylni tekshiring.</div></section>`;
+ let last=F.rounds[F.rounds.length-1];
+ return `<section class="panel"><div class="between"><div><h2>Fight Night</h2><p class="muted">${esc(dateStr())} · ${F.maxRounds} raund · ${esc(VENUES[0])}</p></div><span class="tag goldtag">${F.round<=F.maxRounds?`${F.round}-raund`:"Yakunlandi"}</span></div><div class="fightarena"><div class="tag">PROFESSIONAL BOXING</div><div class="vs"><div class="corner"><div class="avatar" style="margin:auto auto 8px">${esc(p.name.split(" ").map(x=>x[0]).join("").slice(0,2))}</div><strong>${esc(p.name)}</strong><div class="muted">${recordText(p)}</div><div class="tag goldtag">${p.stance}</div>${progress("Condition",p.condition,"green")}${progress("Fatigue",p.fatigue,"red")}</div><div class="gold" style="font-size:24px;font-weight:1000">VS</div><div class="corner"><div class="avatar" style="margin:auto auto 8px;background:linear-gradient(145deg,#b34b53,#4a2028)">${esc(o.name.split(" ").map(x=>x[0]).join("").slice(0,2))}</div><strong>${esc(o.name)}</strong><div class="muted">${recordText(o)}</div><div class="tag">${o.stance}</div>${progress("Condition",o.condition,"green")}${progress("Fatigue",o.fatigue,"red")}</div></div><div class="fightbuttons"><span class="tag">Punches landed: ${F.totalP} — ${F.totalO}</span><span class="tag">Knockdowns: ${F.knockdownsP} — ${F.knockdownsO}</span></div></div><h3 class="subhead">Raund taktikasi</h3><div class="row">${Object.keys(TACTICS).map(t=>`<button class="${fightTactic===t?"primary":""}" data-tactic="${t}">${t}</button>`).join("")}</div><div class="notice">Taktikani har raunddan oldin o‘zgartiring. Aggressive ko‘proq zarba beradi, lekin stamina sarfi va himoyadagi xavfni oshiradi.</div><div class="row"><button class="primary" id="roundBtn">Raundni simulyatsiya qilish →</button><button id="autoFightBtn">Jangni yakunigacha simulyatsiya</button></div>${last?`<div class="result"><div class="between"><b>${last.round}-raund xulosasi</b><span class="tag">${last.p.land} — ${last.o.land} aniq zarba</span></div><p>${esc(last.comment)}</p><small class="muted">Urinishlar: ${last.p.attempt} — ${last.o.attempt} · Taktika: ${esc(last.tacticP)} vs ${esc(last.tacticO)} · Knockdown: ${last.kdP} — ${last.kdO}</small></div>`:""}<div class="roundlog">${F.rounds.slice().reverse().map(r=>`<p><b>${r.round}-raund:</b> ${esc(r.comment)} <span class="muted">(${r.p.land}-${r.o.land})</span></p>`).join("")||'<p>Qo‘ng‘iroq chalinishini kutmoqda…</p>'}</div></section>`;
+}
+function rankingsPage(){
+ let di=selectedDivision,ids=S.rankings[di]||[],list=ids.map(id=>fighterById(id)).filter(Boolean);
+ return `<section class="panel"><div class="between"><div><h2>Division Rankings</h2><p class="muted">Reytinglar rekord, form, rating va kamarlar asosida hisoblanadi.</p></div><span class="tag goldtag">P4P #${p4pRank(S.player)||"—"}</span></div><div class="tabrow">${DIVISIONS.map((d,i)=>`<button data-div="${i}" class="${di===i?"primary":""}">${d[0]}</button>`).join("")}</div><div class="tablewrap"><table><thead><tr><th>#</th><th>Bokschi</th><th>Rekord</th><th>KO</th><th>Rating</th><th>Titles</th><th>Holat</th></tr></thead><tbody>${list.slice(0,20).map((f,i)=>`<tr><td>${i+1}</td><td>${esc(f.name)} ${f===S.player?'<span class="tag goldtag">SIZ</span>':""}</td><td>${recordText(f)}</td><td>${f.record.ko}</td><td>${fighterRating(f)}</td><td>${esc(f.titles.join(", ")||"—")}</td><td>${f.retired?"Retired":f.injury?"Injured":"Active"}</td></tr>`).join("")}</tbody></table></div><h3 class="subhead">Pound-for-pound top 10</h3><div class="tablewrap"><table><thead><tr><th>P4P</th><th>Bokschi</th><th>Division</th><th>Rekord</th><th>Rating</th></tr></thead><tbody>${allFighters().filter(f=>f.active&&!f.retired).sort((a,b)=>p4pScore(b)-p4pScore(a)).slice(0,10).map((f,i)=>`<tr><td>${i+1}</td><td>${esc(f.name)} ${f===S.player?'<span class="tag goldtag">SIZ</span>':""}</td><td>${DIVISIONS[f.division][0]}</td><td>${recordText(f)}</td><td>${fighterRating(f)}</td></tr>`).join("")}</tbody></table></div></section>`;
+}
+function p4pScore(f){return fighterRating(f)+f.record.w*1.1-f.record.l*2+f.titles.length*10+Math.min(15,f.streak*2)}
+function p4pRank(p){if(!p)return null;return allFighters().filter(f=>f.active&&!f.retired).sort((a,b)=>p4pScore(b)-p4pScore(a)).findIndex(f=>f.id===p.id)+1}
+function beltsPage(){
+ let p=S.player,di=p?.division??selectedDivision;return `<section class="panel"><div class="between"><div><h2>Championships & Belts</h2><p class="muted">WBA, WBC, IBF va WBO kamarlarining har biri alohida yuritiladi.</p></div><select id="beltDiv" class="inlinefield">${DIVISIONS.map((d,i)=>`<option value="${i}" ${i===di?"selected":""}>${d[0]}</option>`).join("")}</select></div><div class="grid2">${ORGS.map(org=>{let id=S.champions[di]?.[org],f=id&&fighterById(id);return `<div class="result"><div class="between"><span class="tag goldtag">${org}</span>${f?'<span class="tag">CHAMPION</span>':'<span class="tag redtag">VACANT</span>'}</div>${f?`<div style="margin:12px 0">${fighterCard(f)}</div><p class="muted">Division: ${DIVISIONS[di][0]} · ${f.titleDefenses||0} title defense</p>`:`<div class="empty"><strong>Kamar bo‘sh</strong>Kelajakdagi natijalar chempionni aniqlashi mumkin.</div>`}${p&&di===p.division&&f&&f.id!==p.id?`<button data-title="${org}" ${p.rank>5||p.record.w<8||p.retired?"disabled":""}>${org} uchun Title Shot so‘rash</button>`:""}${p&&di===p.division&&f&&f.id!==p.id&&p.titles?.length?`<button data-unify="${org}" ${p.retired||p.injury||S.activeFight?"disabled":""}>${org} bilan kamarlarni birlashtirish</button>`:""}</div>`}).join("")}</div><div class="notice">Title Shot talabi: top-5 reyting va kamida 8 professional g‘alaba. Kamar faqat title shartnomasi doirasidagi jangda almashadi.</div></section>`;
+}
+function worldPage(){
+ let list=S.world.slice().sort((a,b)=>fighterRating(b)-fighterRating(a));
+ return `<section class="panel"><div class="between"><div><h2>Living Boxing World</h2><p class="muted">AI jangchilari natijalarga qarab o‘sadi, pasayadi, kamar oladi va nafaqaga chiqadi.</p></div><span class="tag">${S.world.length} AI bokschi</span></div><div class="stats">${statCard("Division",17,"An’anaviy vazn toifalari")}${statCard("AI roster",S.world.length,"Barcha bo‘limlarda")}${statCard("AI jang / oy",S.settings.aiPerMonth,"Yaqinlashtirilgan simulyatsiya")}${statCard("Faol bokschilar",S.world.filter(f=>f.active&&!f.retired).length,"Joriy dunyo")}</div><h3 class="subhead">Kuchli bokschilar</h3><div class="tablewrap"><table><thead><tr><th>Ism</th><th>Division</th><th>Rekord</th><th>Rating</th><th>Age</th><th>Popularity</th></tr></thead><tbody>${list.slice(0,30).map(f=>`<tr><td>${esc(f.name)}</td><td>${DIVISIONS[f.division][0]}</td><td>${recordText(f)}</td><td>${fighterRating(f)}</td><td>${f.age}</td><td>${f.popularity}</td></tr>`).join("")}</tbody></table></div><button id="advanceWorld" class="primary" style="margin-top:14px" ${S.activeFight?"disabled":""}>Keyingi oyga o‘tish →</button></section>`;
+}
+function calendarPage(){
+ let p=S.player;return `<section class="panel"><div class="between"><div><h2>Kalendar</h2><p class="muted">Vaqt o‘tishi bilan bokschilar yoshi, AI janglari, recovery va takliflar yangilanadi.</p></div><span class="tag goldtag">${dateStr()}</span></div><div class="stats">${statCard("Yil",S.year,"Career era")}${statCard("Oy",S.month,"12 oyli kalendar")}${statCard("Yosh",p?.age||"—","Bokschi yoshi")}${statCard("Training limit",p?.trainingThisMonth||0,"/ 8 bu oy")}</div><div class="row" style="margin-top:15px"><button class="primary" id="advanceBtn" ${S.activeFight||S.retired?"disabled":""}>Keyingi oyga o‘tish →</button><button id="restBtn" ${!p||p.retired?"disabled":""}>Dam olish</button></div><h3 class="subhead">Karyera voqealari</h3>${S.events.length?S.events.slice(0,20).map(e=>`<div class="feeditem"><b>${esc(e.text)}</b><small class="muted">${esc(e.date)}</small></div>`).join(""):'<div class="empty">Hali voqealar yo‘q.</div>'}</section>`;
+}
+function financesPage(){
+ let p=S.player;if(!p)return creation();return `<section class="panel"><div class="between"><div><h2>Finances</h2><p class="muted">Purse faqat jang tugagach beriladi. Xarajatlar ledgerda alohida ko‘rsatiladi.</p></div><button id="exportBtn">Ledger eksport</button></div><div class="stats">${statCard("Joriy balans",money(p.money),"Available money","gold")}${statCard("Career earnings",money(p.earnings),"Gross fight earnings")}${statCard("Ledger income",money(S.ledger.filter(x=>x.amount>0).reduce((a,x)=>a+x.amount,0)),"Jami tushum")}${statCard("Ledger expenses",money(-S.ledger.filter(x=>x.amount<0).reduce((a,x)=>a+x.amount,0)),"Jami xarajat")}</div><h3 class="subhead">Moliyaviy tarix</h3><div class="tablewrap"><table><thead><tr><th>Sana</th><th>Tur</th><th>Izoh</th><th>Miqdor</th></tr></thead><tbody>${S.ledger.slice(0,100).map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.kind)}</td><td>${esc(x.desc)}</td><td class="${x.amount>=0?"good":"bad"}">${x.amount>=0?"+":""}${money(x.amount)}</td></tr>`).join("")||'<tr><td colspan="4">Hozircha tranzaksiyalar yo‘q.</td></tr>'}</tbody></table></div></section>`;
+}
+function teamPage(){
+ let p=S.player;if(!p)return creation();
+ return `<section class="panel"><h2>Team & Contracts</h2><p class="muted">Jamoa xarajatlari va foydasi jang purse hisobida modellashtiriladi. Boshqaruv qarorlari kelajakdagi shartnomalarga ta’sir qiladi.</p><div class="grid2"><div class="result"><div class="between"><h3>Trainer</h3><span class="tag goldtag">Technique +</span></div><p>Professional trainer: har bir jangdan keyin $500 to‘lov. Training natijalari asosiy atributlarga qo‘llanadi.</p><span class="tag">Contract: Active</span></div><div class="result"><div class="between"><h3>Manager</h3><span class="tag">8% purse</span></div><p>Shartnomalarni boshqaradi va jang takliflarini tashkil qiladi.</p><span class="tag">Revenue share</span></div><div class="result"><div class="between"><h3>Promoter</h3><span class="tag">10% purse</span></div><p>Professional tadbirlar va venue imkoniyatlari uchun ulush oladi.</p><span class="tag">Event access</span></div><div class="result"><div class="between"><h3>Sponsorship</h3><span class="tag goldtag">Beta system</span></div><p>Popularity 35 ga yetgach homiylik bonuslari ochiladi.</p><button id="sponsorBtn" ${p.popularity<35||S.sponsors.some(x=>x.active)?"disabled":""}>Homiylik shartnomasini olish ($2,000)</button>${S.sponsors.map(x=>`<div class="muted">${esc(x.name)} · ${x.months} oy qoldi</div>`).join("")}</div></div><div class="notice">Sponsorship daromadi keyingi oyda beriladi; shartnoma muddati cheklangan.</div></section>`;
+}
+function newsPage(){return `<section class="panel"><h2>Boxing News</h2><p class="muted">Sarlavhalar o‘yin ichidagi real voqealardan hosil qilinadi.</p>${S.news.length?S.news.slice(0,60).map(n=>`<div class="feeditem"><b>${esc(n.head)}</b>${n.body?`<div class="muted">${esc(n.body)}</div>`:""}<small class="muted">${esc(n.date)}</small></div>`).join(""):'<div class="empty"><strong>Yangiliklar yo‘q</strong>Karyerani boshlang va dunyo rivojlansin.</div>'}</section>`}
+function historyPage(){let p=S.player;if(!p)return creation();return `<section class="panel"><h2>Fight History</h2><p class="muted">Janglar bokschi rekordiga bir marta yoziladi; har bir yozuv sana, raqib va natijani saqlaydi.</p>${p.fights.length?`<div class="tablewrap"><table><thead><tr><th>Sana</th><th>Raqib</th><th>Natija</th><th>Method</th><th>Raund</th><th>Venue</th><th>Knockdowns</th></tr></thead><tbody>${p.fights.map(f=>`<tr><td>${esc(f.date)}</td><td>${esc(f.opponent)}</td><td>${esc(f.result||"")}</td><td>${esc(f.method||"")}</td><td>${f.round||"—"}</td><td>${esc(f.venue||"—")}</td><td>${f.knockdownsFor??"—"} / ${f.knockdownsAgainst??"—"}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty"><strong>Hali jang o‘tkazilmagan</strong>Birinchi taklifni qabul qiling.</div>'}</section><section class="panel"><h2>Career Timeline</h2>${S.history.length?S.history.map(x=>`<div class="feeditem"><b>${esc(x.headline)}</b><div class="muted">${esc(x.date)} · ${esc(x.playerResult)} vs ${esc(x.opponent)}</div></div>`).join(""):'<div class="empty">Karyera tarixi hali bo‘sh.</div>'}</section>`}
+function savesPage(){return `<section class="panel"><h2>Save & Load</h2><p class="muted">Save version 3 (eski save fayllari moslashtiriladi). Autosave muhim voqealarda ishlaydi. JSON faylni boshqa qurilmaga ko‘chirish mumkin.</p><div class="grid2"><div class="result"><h3>Browser save</h3><p>Ushbu qurilmadagi browser storage’da saqlanadi.</p><div class="row"><button class="primary" id="saveBtn">Hozir saqlash</button><button id="loadBtn">Yuklash</button></div></div><div class="result"><h3>Import / Export</h3><p>JSON save faylini eksport qiling yoki import qiling.</p><div class="row"><button id="exportSaveBtn">Export JSON</button><label class="tag" style="cursor:pointer">Import JSON<input type="file" id="importFile" accept=".json,application/json" hidden></label></div></div></div><div class="notice warn">Yangi karyera mavjud save ustidan yozadi. Yangi karyera yaratish uchun sahifani qayta oching va browser save’ni avval eksport qiling.</div><button class="danger" id="deleteSaveBtn">Saqlangan karyerani o‘chirish</button></section>`}
+function settingsPage(){return `<section class="panel"><h2>Sozlamalar</h2><div class="field"><label>AI janglari / oy</label><select id="aiCount">${[3,6,9,12,16,20].map(n=>`<option value="${n}" ${n===(S.settings.aiPerMonth||9)?"selected":""}>${n} ta</option>`).join("")}</select><small class="muted">Ko‘p AI jangi dunyoni tezroq o‘zgartiradi, ammo hisoblash ko‘payadi.</small></div><div class="field"><label>Autosave</label><select id="autosave"><option value="true" ${S.settings.autosave?"selected":""}>Yoqilgan</option><option value="false" ${!S.settings.autosave?"selected":""}>O‘chirilgan</option></select></div><button class="primary" id="saveSettings">Sozlamalarni saqlash</button><h3 class="subhead">O‘yin haqida</h3><p class="muted">BOXING LEGACY — procedural, alternate-history boks simulyatori. Real tarixiy boks natijalari bilan bog‘lanmagan.</p></section>`}
+function render(){
+ $("#dateBadge").textContent=S.player?`${dateStr()} · ${S.player.retired?"Retired":"Career"}`:"Karyera boshlanmagan";
+ const content=!S.player?creation():({dashboard,profile,training:trainingPage,offers:offersPage,fight:fightPage,rankings:rankingsPage,belts:beltsPage,world:worldPage,calendar:calendarPage,finances:financesPage,team:teamPage,news:newsPage,history:historyPage,saves:savesPage,settings:settingsPage}[page]||dashboard)();
+ $("#app").innerHTML=`<div class="layout">${nav()}<main class="main">${content}</main></div>`;
+ bind();
+}
+function bind(){
+ document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>{page=b.dataset.page;render()}));
+ document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{page=b.dataset.go;render()}));
+ const form=$("#createForm");if(form)form.addEventListener("submit",e=>{e.preventDefault();let d=Object.fromEntries(new FormData(form).entries());if(!form.reportValidity())return;if(+d.reach<+d.height-30||+d.reach>+d.height+55){toast("Reach bo‘yga nisbatan mantiqiy bo‘lishi kerak.",true);return}newCareer(d)});
+ document.querySelectorAll("[data-train]").forEach(b=>b.addEventListener("click",()=>train(b.dataset.train)));
+ $("#restBtn")?.addEventListener("click",restDay);$("#advanceBtn")?.addEventListener("click",advanceMonth);$("#advanceWorld")?.addEventListener("click",advanceMonth);
+ $("#refreshOffers")?.addEventListener("click",()=>{createOffers();render();toast("Takliflar yangilandi.")});
+ document.querySelectorAll("[data-accept]").forEach(b=>b.addEventListener("click",()=>offerAccept(b.dataset.accept)));
+ document.querySelectorAll("[data-reject]").forEach(b=>b.addEventListener("click",()=>{S.offers=S.offers.filter(o=>o.id!==b.dataset.reject);render();save(true)}));
+ document.querySelectorAll("[data-tactic]").forEach(b=>b.addEventListener("click",()=>{fightTactic=b.dataset.tactic;render()}));
+ $("#roundBtn")?.addEventListener("click",simulateRound);$("#autoFightBtn")?.addEventListener("click",()=>{let n=0;while(S.activeFight&&n++<12)simulateRound()});
+ document.querySelectorAll("[data-div]").forEach(b=>b.addEventListener("click",()=>{selectedDivision=+b.dataset.div;rankingTab=DIVISIONS[selectedDivision][0];render()}));
+ $("#beltDiv")?.addEventListener("change",e=>{selectedDivision=+e.target.value;render()});
+ document.querySelectorAll("[data-title]").forEach(b=>b.addEventListener("click",()=>startTitleOffer(b.dataset.title)));
+ $("#retireBtn")?.addEventListener("click",retire);
+ $("#saveBtn")?.addEventListener("click",()=>save());$("#loadBtn")?.addEventListener("click",load);$("#exportSaveBtn")?.addEventListener("click",exportSave);
+ $("#importFile")?.addEventListener("change",e=>{if(e.target.files[0])importSave(e.target.files[0])});
+ $("#deleteSaveBtn")?.addEventListener("click",()=>{if(confirm("Browser ichidagi saqlangan karyerani butunlay o‘chirishni tasdiqlaysizmi?")){try{localStorage.removeItem("boxingLegacySave");toast("Saqlangan nusxa o‘chirildi.")}catch(e){toast("Storage mavjud emas.",true)}}});
+ $("#exportBtn")?.addEventListener("click",()=>{let blob=new Blob([JSON.stringify(S.ledger,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="boxing-legacy-ledger.json";a.click();URL.revokeObjectURL(url)});
+ $("#sponsorBtn")?.addEventListener("click",()=>{if(S.player.popularity<35||S.sponsors.some(x=>x.active))return;if(S.player.money<2000)return toast("Homiylik shartnomasini ochish uchun $2,000 kerak.",true);ledger("expense",-2000,"Homiylik shartnomasini rasmiylashtirish");S.sponsors.push({name:"Champion Gear",months:6,monthly:2000,active:true});logNews("Champion Gear homiylik shartnomasi imzolandi",`${S.player.name} uchun oyiga $2,000.`);save(true);render()});
+ $("#saveSettings")?.addEventListener("click",()=>{S.settings.aiPerMonth=+$("#aiCount").value;S.settings.autosave=$("#autosave").value==="true";save(true);toast("Sozlamalar saqlandi.")});
+}
+
+/* BOXING LEGACY COMPLETE SYSTEM PATCH v3 */
+const _BL_newCareer=newCareer, _BL_normalizeSave=normalizeSave, _BL_retire=retire, _BL_train=train;
+normalizeSave=function(x){
+  x=_BL_normalizeSave(x);
+  x.team=x.team&&typeof x.team==="object"?x.team:{trainer:"Club Trainer",trainerLevel:1,manager:"Local Manager",managerRate:8,promoterRate:10,medicalLevel:0};
+  x.processedFightIds=Array.isArray(x.processedFightIds)?x.processedFightIds:[];
+  x.financeMonth=x.financeMonth||null;
+  x.world.forEach(f=>{
+    f.attrs=f.attrs||{}; ATTRS.forEach(a=>f.attrs[a]=clamp(Number(f.attrs[a]??55),20,100));
+    f.record={w:0,l:0,d:0,nc:0,ko:0,koLoss:0,...f.record};
+    f.fights=Array.isArray(f.fights)?f.fights:[]; f.titles=Array.isArray(f.titles)?f.titles:[];
+    f.age=clamp(Number(f.age)||25,18,100); f.division=clamp(Number(f.division)||0,0,DIVISIONS.length-1);
+    f.money=Math.max(0,Number(f.money)||0); f.earnings=Math.max(0,Number(f.earnings)||0);
+    f.condition=clamp(Number(f.condition??80),0,100); f.fatigue=clamp(Number(f.fatigue)||0,0,100);
+  });
+  const p=x.player; p.attrs=p.attrs||{}; ATTRS.forEach(a=>p.attrs[a]=clamp(Number(p.attrs[a]??55),20,100));
+  p.record={w:0,l:0,d:0,nc:0,ko:0,koLoss:0,...p.record}; p.fights=Array.isArray(p.fights)?p.fights:[]; p.titles=Array.isArray(p.titles)?p.titles:[];
+  p.division=clamp(Number(p.division)||0,0,DIVISIONS.length-1); p.money=Math.max(0,Number(p.money)||0); p.earnings=Math.max(0,Number(p.earnings)||0);
+  x.world=x.world.filter(f=>f&&f.id&&f.attrs&&f.record);
+  return x;
+};
+newCareer=function(data){_BL_newCareer(data);S.team={trainer:"Club Trainer",trainerLevel:1,manager:"Local Manager",managerRate:8,promoterRate:10,medicalLevel:0};S.financeMonth=null;save(true);};
+function blSafeRecord(f){f.record=f.record||{w:0,l:0,d:0,nc:0,ko:0,koLoss:0};for(const k of ["w","l","d","nc","ko","koLoss"])f.record[k]=Math.max(0,Math.floor(Number(f.record[k])||0));}
+function blLedger(kind,amount,desc){if(!S.player)return;amount=Math.round(Number(amount)||0);S.player.money=Math.round((Number(S.player.money)||0)+amount);S.ledger.unshift({date:dateStr(),kind,amount,desc});S.ledger=S.ledger.slice(0,500);}
+ledger=blLedger;
+function blSetChampion(di,org,newId,reason=""){S.champions[di]=S.champions[di]||{};const oldId=S.champions[di][org],old=oldId&&fighterById(oldId),nw=newId&&fighterById(newId);if(oldId===newId)return;if(old)old.titles=(old.titles||[]).filter(t=>t!==org);if(nw&&!nw.titles.includes(org))nw.titles.push(org);if(newId)S.champions[di][org]=newId;else delete S.champions[di][org];if(old||nw)logNews(`${org}: ${nw?nw.name:"kamar bo‘sh"}`,reason||`${old?.name||"Bo‘sh kamar"} → ${nw?.name||"Bo‘sh kamar"}`);}
+recalcRankings=function(){
+ S.rankings={};S.bestRank=null;
+ DIVISIONS.forEach((d,di)=>{let list=S.world.filter(f=>f.division===di&&f.active&&!f.retired);if(S.player&&S.player.division===di&&!S.player.retired)list.push(S.player);
+ list.sort((a,b)=>rankScore(b)-rankScore(a)||fighterRating(b)-fighterRating(a)||a.name.localeCompare(b.name));
+ list.forEach((f,i)=>{f.rank=i+1;if(f===S.player){S.bestRank=!S.bestRank?i+1:Math.min(S.bestRank,i+1);f.bestRank=!f.bestRank?i+1:Math.min(f.bestRank,i+1);}});S.rankings[di]=list.map(f=>f.id);});
+ // Ensure belts never point at missing or retired fighters; vacant belts go to eligible top-ranked boxer.
+ DIVISIONS.forEach((d,di)=>{S.champions[di]=S.champions[di]||{};ORGS.forEach(org=>{let id=S.champions[di][org],c=id&&fighterById(id);if(!c||c.retired||!c.active){delete S.champions[di][org];if(c)c.titles=(c.titles||[]).filter(t=>t!==org);let candidate=(S.rankings[di]||[]).map(fighterById).find(f=>f&&f.active&&!f.retired&&f.condition>20&&!f.injury&&!f.titles.includes(org));if(candidate&&Math.random()<.35)blSetChampion(di,org,candidate.id,"Bo‘sh kamar uchun dunyo reytingidan yangi chempion tayinlandi.");}});});
+};
+canTitleFight=function(p,di){return !!p&&!p.retired&&!p.injury&&p.division===di&&p.rank<=5&&p.record.w>=8&&p.condition>=45;};
+createOffers=function(){
+ if(!S.player||S.player.retired||S.activeFight||S.player.injury)return;
+ const p=S.player,di=p.division,used=new Set();
+ const eligible=S.world.filter(f=>f.active&&!f.retired&&!f.injury&&f.division===di&&f.condition>25&&!f.fights.some(x=>x.date===fullDate()&&x.pending));
+ let pool=eligible.slice().sort((a,b)=>Math.abs(fighterRating(a)-fighterRating(p))-Math.abs(fighterRating(b)-fighterRating(p)));
+ const chosen=[];for(const f of pool){if(!used.has(f.id)){chosen.push(f);used.add(f.id);if(chosen.length>=5)break;}}
+ S.offers=chosen.map(o=>({id:uid(),opponentId:o.id,division:di,rounds:pick([4,6,8,10]),venue:pick(VENUES),year:S.year,month:Math.min(12,S.month+int(1,3)),purse:Math.round((1500+p.popularity*100+fighterRating(o)*45+int(0,2200))*(1+Math.random()*.25)),bonus:Math.random()>.55?int(500,2500):0,status:"Offer",title:false}));
+};
+offerAccept=function(id){
+ const o=S.offers.find(x=>x.id===id),p=S.player,opp=o&&fighterById(o.opponentId);
+ if(!o||!p||!opp||!opp.active||opp.retired||opp.injury||S.activeFight||p.injury||p.retired)return toast("Bu shartnomani hozir qabul qilib bo‘lmaydi.",true);
+ if(opp.division!==p.division||o.division!==p.division)return toast("Vazn toifasi mos emas.",true);
+ if(o.title&&o.unification){if(!p.titles?.length||!(o.orgs||[]).some(org=>S.champions[o.division]?.[org]===p.id)||!(o.orgs||[]).some(org=>S.champions[o.division]?.[org]===opp.id))return toast("Unifikatsiya shartlari endi mos emas.",true);}else if(o.title&&(!canTitleFight(p,o.division)||S.champions[o.division]?.[o.org]!==opp.id))return toast("Title Shot talablari yoki chempion ma’lumoti o‘zgargan.",true);
+ if(S.offers.some(x=>x.status==="Accepted"))return toast("Boshqa shartnoma allaqachon qabul qilingan.",true);
+ o.status="Accepted";o.fightDate=`${o.year}-${String(o.month).padStart(2,"0")}`;
+ S.activeFight={id:uid(),offerId:o.id,offer:{...o},playerId:p.id,opponentId:opp.id,round:1,maxRounds:o.rounds,playerTactic:"Balanced",opponentTactic:"Balanced",rounds:[],started:false,finished:false,damageP:0,damageO:0,knockdownsP:0,knockdownsO:0,judges:[{p:0,o:0},{p:0,o:0},{p:0,o:0}],totalP:0,totalO:0,medicalChecks:0};
+ S.offers=S.offers.filter(x=>x.id!==id);fightTactic="Balanced";logNews(`Jang rasman tasdiqlandi: ${p.name} vs ${opp.name}`,`${o.rounds} raund · ${o.venue} · ${o.title?o.org+" chempionlik jangi":"oddiy jang"}`);save(true);page="fight";render();
+};
+simulateRound=function(){
+ const F=S.activeFight,p=S.player;if(!F||F.finished||!p)return;const o=fighterById(F.opponentId);if(!o)return;
+ if(!F.started){F.started=true;logNews("Jang boshlandi",`${p.name} vs ${o.name}`);}
+ const round=F.round,pt=TACTICS[fightTactic]||TACTICS.Balanced,ot=TACTICS[F.opponentTactic]||TACTICS.Balanced;
+ const execute=(a,b,tac,defTac,isPlayer)=>{
+  const tired=clamp(a.fatigue/100,0,.9),condition=clamp(a.condition/100,.1,1);
+  const attempts=Math.max(2,Math.round((7+a.attrs.Speed/8+a.attrs.Technique/17)*tac.atk*(.7+(a.attrs.Stamina/100)*.5)*(1-tired*.42)*(0.85+Math.random()*.3)));
+  const acc=clamp((.17+a.attrs.Accuracy/190+a.attrs.Technique/280+a.attrs.Reach*0.00035-tired*.13)*tac.hit/Math.max(.65,defTac.def*(.72+b.attrs.Defense/260)),.05,.78);
+  let landed=0,power=0,damage=0,body=0;
+  for(let i=0;i<attempts;i++)if(Math.random()<acc){landed++;const heavy=Math.random()<clamp(.16+a.attrs.Power/240,.18,.55);const bodyHit=(fightTactic==="Body attack"&&isPlayer)||(F.opponentTactic==="Body attack"&&!isPlayer);const d=(heavy?1.55:1)*(a.attrs.Power/66)*(.65+Math.random()*.7)*(bodyHit?1.12:1)*condition;damage+=d;if(heavy)power++;if(bodyHit)body++;}
+  a.fatigue=clamp(a.fatigue+attempts*(.36+.28*tac.stam)+(tac.atk>1?2:0),0,100);
+  a.condition=clamp(a.condition-attempts*.09,5,100);
+  return {attempt:attempts,land:landed,power,damage,body,acc:landed/attempts};
+ };
+ const pr=execute(p,o,pt,ot,true),orr=execute(o,p,ot,pt,false);
+ const knockChance=(att,def)=>clamp((att.damage/55)*(1-def.attrs.Chin/125)*(1+def.fatigue/150)*(def.condition<45?1.35:1),0,.27);
+ const kdO=Math.random()<knockChance(pr,o)?1:0,kdP=Math.random()<knockChance(orr,p)?1:0;
+ if(kdO){F.knockdownsP++;F.damageO+=9;o.condition=clamp(o.condition-9,5,100);o.fatigue=clamp(o.fatigue+8,0,100);}
+ if(kdP){F.knockdownsO++;F.damageP+=9;p.condition=clamp(p.condition-9,5,100);p.fatigue=clamp(p.fatigue+8,0,100);}
+ F.totalP+=pr.land;F.totalO+=orr.land;
+ let pScore=pr.land*1.05+pr.power*.8+pr.damage*.25+kdO*8+Math.random()*2.4;
+ let oScore=orr.land*1.05+orr.power*.8+orr.damage*.25+kdP*8+Math.random()*2.4;
+ F.judges.forEach(j=>{let diff=pScore-oScore+(Math.random()*2-1);if(kdO)diff+=2;if(kdP)diff-=2;if(diff>0)j.p+=10,j.o+=kdO?8:9;else if(diff<0)j.p+=kdP?8:9,j.o+=10;else j.p+=10,j.o+=10;});
+ const summary={round,p:pr,o:orr,tacticP:fightTactic,tacticO:F.opponentTactic,kdP,kdO,scoreP:pScore,scoreO:oScore,judgeRound:F.judges.map(j=>({p:j.p,o:j.o})),comment:roundComment(pr,orr,kdP,kdO,p,o)};F.rounds.push(summary);
+ let stoppage=null;
+ // Referee/doctor stoppages after repeated knockdowns or severe cumulative damage.
+ if(kdP&&F.knockdownsO>=3)stoppage={winner:o,loser:p,method:"TKO"};
+ else if(kdO&&F.knockdownsP>=3)stoppage={winner:p,loser:o,method:"TKO"};
+ else if(kdP&&Math.random()<.13+F.knockdownsO*.045)stoppage={winner:o,loser:p,method:"KO"};
+ else if(kdO&&Math.random()<.13+F.knockdownsP*.045)stoppage={winner:p,loser:o,method:"KO"};
+ else if((p.condition<18||F.damageP>35)&&Math.random()<.22)stoppage={winner:o,loser:p,method:"TKO"};
+ else if((o.condition<18||F.damageO>35)&&Math.random()<.22)stoppage={winner:p,loser:o,method:"TKO"};
+ else if(round>=3&&Math.random()<.003)stoppage={winner:o,loser:p,method:"DQ"};
+ else if(round>=3&&Math.random()<.003)stoppage={winner:p,loser:o,method:"DQ"};
+ else if(round>=4&&Math.random()<.006)stoppage={winner:Math.random()<.5?p:o,loser:null,method:"RTD"};
+ if(stoppage){if(stoppage.method==="RTD"){const w=stoppage.winner;finishFight(w.id,"RTD",round);}else finishFight(stoppage.winner.id,stoppage.method,round);return;}
+ if(round>=F.maxRounds){finishFight(null,"Decision",round);return;}
+ F.round++;if(Math.random()<.5)F.opponentTactic=pick(["Balanced","Aggressive","Defensive","Counterpunching","Body attack","Movement-focused"]);
+ save(true);render();
+};
+finishFight=function(winnerId,method,round){
+ const F=S.activeFight,p=S.player;if(!F||!p||F.finished)return;const o=fighterById(F.opponentId);if(!o)return;
+ const key=F.offerId||F.id;if((S.processedFightIds||[]).includes(key))return;
+ F.finished=true;S.processedFightIds=S.processedFightIds||[];S.processedFightIds.push(key);S.processedFightIds=S.processedFightIds.slice(-500);
+ let winner=winnerId?fighterById(winnerId):null,official=method;
+ const scores=(F.judges||[{p:0,o:0},{p:0,o:0},{p:0,o:0}]).map(j=>({p:j.p||0,o:j.o||0}));
+ if(method==="Decision"){const pv=scores.filter(s=>s.p>s.o).length,ov=scores.filter(s=>s.o>s.p).length;if(pv===ov){official="Draw";winner=null;}else{winner=pv>ov?p:o;official=(pv===3||ov===3)?"Unanimous Decision":(pv===2&&ov===1||ov===2&&pv===1)?"Split Decision":"Majority Decision";}}
+ if(["Draw","Technical Draw"].includes(method))winner=null;
+ const pWin=winner?.id===p.id,oWin=winner?.id===o.id,draw=!winner;
+ blSafeRecord(p);blSafeRecord(o);
+ if(draw){p.record.d++;o.record.d++;p.streak=0;o.streak=0;p.lossStreak=0;o.lossStreak=0;}
+ else if(pWin){p.record.w++;o.record.l++;p.streak++;p.lossStreak=0;o.streak=0;o.lossStreak++;if(["KO","TKO"].includes(official)){p.record.ko++;o.record.koLoss++;}}
+ else{o.record.w++;p.record.l++;o.streak++;o.lossStreak=0;p.streak=0;p.lossStreak++;if(["KO","TKO"].includes(official)){o.record.ko++;p.record.koLoss++;}}
+ const offer=F.offer||{},gross=Math.max(0,Number(offer.purse)||1500)+(pWin?Math.max(0,Number(offer.bonus)||0):0);
+ const team=S.team||{managerRate:8,promoterRate:10};const manager=Math.round(gross*clamp(team.managerRate??8,0,20)/100),promoter=Math.round(gross*clamp(team.promoterRate??10,0,25)/100),trainer=team.trainer==="None"?0:Math.max(0,500-(Number(team.trainerLevel)||1)*50);
+ ledger("income",gross,`Jang gonorari${pWin&&offer.bonus?` + bonus ${money(offer.bonus)}`:""}`);
+ if(manager)ledger("expense",-manager,`Menejer ulushi (${team.managerRate??8}%)`);if(promoter)ledger("expense",-promoter,`Promouter ulushi (${team.promoterRate??10}%)`);if(trainer)ledger("expense",-trainer,"Murabbiy to‘lovi");
+ p.earnings=(Number(p.earnings)||0)+gross;p.popularity=clamp(p.popularity+(pWin?int(3,8):draw?0:int(-2,2))+(["KO","TKO"].includes(official)?3:0),0,100);
+ o.popularity=clamp(o.popularity+(oWin?int(2,5):draw?0:int(-1,2)),0,100);
+ p.condition=clamp(p.condition-int(10,20),5,100);o.condition=clamp(o.condition-int(10,20),5,100);
+ p.fatigue=clamp(p.fatigue+int(12,22),0,100);o.fatigue=clamp(o.fatigue+int(12,22),0,100);
+ p.lastFightMonth=S.month+S.year*12;o.lastFightMonth=p.lastFightMonth;
+ if(Math.random()<.10){p.injury=pick(["Qo‘l shikastlanishi","Yuz jarohati","Qovurg‘a lat yeyishi"]);p.injuryMonths=int(1,2);logNews(`${p.name} jangdan keyin jarohat oldi`,p.injury);}
+ if(Math.random()<.08){o.injury=pick(["Qo‘l shikastlanishi","Yuz jarohati","Qovurg‘a lat yeyishi"]);o.injuryMonths=int(1,2);}
+ const resultP=pWin?`W — ${official}`:winner?`L — ${official}`: `D — ${official}`,resultO=oWin?`W — ${official}`:winner?`L — ${official}`:`D — ${official}`;
+ const hist=(self,opp,result,own,other,kf,ka)=>({id:key,date:fullDate(),opponentId:opp.id,opponent:opp.name,opponentRecordAtTime:recordText(opp),result,method:official,round,venue:offer.venue||"Arena",scores:own,opponentScores:other,division:self.division,purse:self===p?gross:Math.round(gross*.65),knockdownsFor:kf,knockdownsAgainst:ka,rounds:F.rounds.map(r=>({round:r.round,own:self===p?r.p.land:r.o.land,against:self===p?r.o.land:r.p.land,kdFor:self===p?r.kdO:r.kdP,kdAgainst:self===p?r.kdP:r.kdO}))});
+ p.fights.unshift(hist(p,o,resultP,scores.map(x=>x.p),scores.map(x=>x.o),F.knockdownsP,F.knockdownsO));o.fights.unshift(hist(o,p,resultO,scores.map(x=>x.o),scores.map(x=>x.p),F.knockdownsO,F.knockdownsP));
+ // Any official title bout changes only its named belt; a draw leaves the belt with its holder.
+ if(offer.title&&winner){const boutOrgs=Array.isArray(offer.orgs)&&offer.orgs.length?offer.orgs:(offer.org?[offer.org]:[]);for(const org of boutOrgs){const champ=S.champions[p.division]?.[org];if(winner.id!==champ&&[p.id,o.id].includes(winner.id))blSetChampion(p.division,org,winner.id,`${winner.name} ${official} bilan kamarni qo‘lga kiritdi.`);else if(winner.id===champ){winner.titleDefenses=(winner.titleDefenses||0)+1;logNews(`${org} kamari himoya qilindi`,`${winner.name} kamarini saqlab qoldi.`);}}}
+ recalcRankings();
+ const headline=winner?`${winner.name} ${official} orqali g‘alaba qozondi`:`Jang ${official} bilan yakunlandi`;
+ logNews(headline,`${p.name} vs ${o.name} · ${round}-raund · ${offer.venue||"Arena"}`);
+ S.history.unshift({id:key,date:fullDate(),headline,playerResult:resultP,opponent:o.name,method:official,round,venue:offer.venue,scores,knockdownsP:F.knockdownsP,knockdownsO:F.knockdownsO});S.history=S.history.slice(0,300);
+ S.rivalries=S.rivalries||[];if(pWin&&p.streak>=5)S.rivalries.unshift({a:p.id,b:o.id,heat:3,reason:"Ketma-ket janglar"});S.rivalries=S.rivalries.slice(0,30);
+ S.activeFight=null;S.offers=[];createOffers();save(true);page="history";render();showResult({p,o,winner,official,round,scores,offer,knockdownsP:F.knockdownsP,knockdownsO:F.knockdownsO});
+};
+simulateAIFight=function(){
+ const eligible=S.world.filter(f=>f.active&&!f.retired&&!f.injury&&f.condition>25&&f.age<60);
+ if(eligible.length<2)return false;
+ const a=pick(eligible),opts=eligible.filter(b=>b.id!==a.id&&b.division===a.division&&!b.fights.some(x=>x.date===fullDate()));if(!opts.length)return false;
+ opts.sort((x,y)=>Math.abs(fighterRating(x)-fighterRating(a))-Math.abs(fighterRating(y)-fighterRating(a)));const b=opts[0];
+ const ra=fighterRating(a),rb=fighterRating(b),pa=clamp(.5+(ra-rb)*.008+(a.attrs.Accuracy-b.attrs.Defense)*.002+(a.attrs.Stamina-b.attrs.Stamina)*.001,.18,.82),r=Math.random();
+ const winner=r<pa?a:r>1-pa?b:null;let method=winner?(Math.random()<.18?"KO":Math.random()<.15?"TKO":"Decision"):"Draw";
+ if(winner&&Math.random()<.012)method="DQ";
+ for(const f of [a,b])blSafeRecord(f);
+ if(!winner){a.record.d++;b.record.d++;a.streak=b.streak=0;a.lossStreak=b.lossStreak=0;}
+ else{winner.record.w++;const loser=winner===a?b:a;loser.record.l++;winner.streak++;winner.lossStreak=0;loser.lossStreak++;loser.streak=0;if(["KO","TKO"].includes(method)){winner.record.ko++;loser.record.koLoss++;}}
+ const round=method==="Decision"?int(4,10):int(1,Math.min(10,12));
+ const venue=pick(VENUES);
+ for(const [f,opp] of [[a,b],[b,a]]){const win=f===winner;f.fights.unshift({id:uid(),date:fullDate(),opponentId:opp.id,opponent:opp.name,opponentRecordAtTime:recordText(opp),result:winner?`${win?"W":"L"} — ${method}`:"D — Draw",method,round,venue,division:f.division,knockdownsFor:method==="KO"&&win?1:0,knockdownsAgainst:method==="KO"&&!win?1:0});f.fights=f.fights.slice(0,250);f.lastFightMonth=S.month+S.year*12;f.condition=clamp(f.condition-int(8,18),5,100);f.fatigue=clamp(f.fatigue+int(8,17),0,100);f.popularity=clamp(f.popularity+(win?2: winner?-1:0),0,100);}
+ if(winner){const purse=int(800,4000);winner.money+=purse;winner.earnings=(winner.earnings||0)+purse;}
+ // Champions may only lose belts in a simulated bout if opponent is a ranked challenger.
+ const belts=S.champions[a.division]||{};ORGS.forEach(org=>{const champ=belts[org];if(!champ||!winner)return;const loser=winner===a?b:a;if(champ===loser.id&&winner.rank&&winner.rank<=10)blSetChampion(a.division,org,winner.id,`${winner.name} AI chempionlik jangida g‘alaba qozondi.`);});
+ recalcRankings();return true;
+};
+advanceMonth=function(){
+ if(!S.player||S.retired||S.player.retired)return toast("Faol karera kerak.",true);if(S.activeFight)return toast("Faol jangni yakunlang.",true);
+ S.month++;if(S.month>12){S.month=1;S.year++;}
+ const p=S.player;p.trainingThisMonth=0;if(S.month===1&&p.age<100)p.age++;
+ p.fatigue=clamp(p.fatigue-20-p.attrs.Recovery*.08,0,100);p.condition=clamp(p.condition+20,0,100);
+ if(p.injury){p.injuryMonths=Math.max(0,p.injuryMonths-1);if(!p.injuryMonths){p.injury=null;logNews(`${p.name} jarohatdan to‘liq tiklandi`);}}
+ if(p.age>32)ATTRS.forEach(a=>{const delta=p.age<36&&p.potential>avg(Object.values(p.attrs))?.08:-.18;p.attrs[a]=clamp(p.attrs[a]+delta,20,100);});
+ // AI develops, heals, declines and occasionally retires.
+ S.world.forEach(f=>{if(S.month===1&&f.age<100)f.age++;f.fatigue=clamp(f.fatigue-16,0,100);f.condition=clamp(f.condition+14,5,100);if(f.injuryMonths>0){f.injuryMonths--;if(!f.injuryMonths)f.injury=null;}if(f.age>37&&Math.random()<.035){f.active=false;f.retired=true;f.titles.slice().forEach(org=>blSetChampion(f.division,org,null,`${f.name} nafaqaga chiqdi.`));logNews(`${f.name} faoliyatini yakunladi`);}else if(f.age<30&&Math.random()<.22){const a=pick(ATTRS);f.attrs[a]=clamp(f.attrs[a]+Math.random()*.3,20,98);}else if(f.age>34&&Math.random()<.25){const a=pick(["Speed","Stamina","Recovery"]);f.attrs[a]=clamp(f.attrs[a]-.25,20,98);}});
+ const aiN=clamp(Number(S.settings.aiPerMonth)||9,0,30);let completed=0,guard=0;while(completed<aiN&&guard<aiN*5+5){if(simulateAIFight())completed++;guard++;}
+ S.sponsors.forEach(sp=>{if(sp.active&&sp.months>0){ledger("income",sp.monthly,`${sp.name} homiylik`);sp.months--;if(sp.months<=0){sp.active=false;logNews(`${sp.name} homiylik shartnomasi yakunlandi`);}}});
+ // Monthly living costs, if unaffordable the balance may go negative and is shown transparently.
+ const living=600,medical=p.injury?250:0;ledger("expense",-living,"Oylik yashash va zal xarajati");if(medical)ledger("expense",-medical,"Jarohatni davolash");
+ // Vacate belts held by retired/inactive boxers, then refresh rankings and offers.
+ S.world.forEach(f=>{if(f.retired||!f.active)(f.titles||[]).slice().forEach(org=>blSetChampion(f.division,org,null,"Chempion faol emas; kamar bo‘shatildi."));});
+ recalcRankings();S.offers=[];createOffers();logNews(`${dateStr()} — yangi oy`,`${completed} ta AI jangi simulyatsiya qilindi.`);save(true);render();toast(`${dateStr()} ga o‘tildi.`);
+};
+train=function(type){
+ const p=S.player;if(!p||p.retired)return toast("Faol bokschi kerak.",true);if(p.injury)return toast("Jarohat sabab mashg‘ulot mumkin emas.",true);
+ if(p.trainingThisMonth>=8)return toast("Bu oy uchun 8 ta mashg‘ulot limiti tugadi.",true);if(p.fatigue>82)return toast("Charchoq yuqori. Avval dam oling.",true);
+ const map={Strength:["Power","Chin"],Speed:["Speed","Accuracy"],Technique:["Technique","Accuracy"],Endurance:["Stamina","Recovery"],Defense:["Defense","Chin"],Counterpunching:["Counterpunching","Accuracy"],Clinch:["Clinch","Stamina"],Sparring:["Technique","Defense","Speed"]};
+ const cost=type==="Sparring"?950:450;if(p.money<cost)return toast("Mablag‘ yetarli emas.",true);ledger("expense",-cost,`${type} mashg‘uloti`);
+ const coach=1+Math.max(0,(S.team?.trainerLevel||1)-1)*.08;const before={...p.attrs},intensity=p.fatigue>55?.4:.8;
+ (map[type]||[]).forEach(a=>{const gain=(Math.random()*.45+.25)*intensity*coach*(p.attrs[a]>88?.35:1);p.attrs[a]=clamp(p.attrs[a]+gain,20,100);});
+ p.fatigue=clamp(p.fatigue+int(type==="Sparring"?13:7,type==="Sparring"?22:14),0,100);p.condition=clamp(p.condition-int(3,8),5,100);p.trainingThisMonth++;
+ if(type==="Sparring"&&Math.random()<Math.max(.02,.09-(S.team?.medicalLevel||0)*.02)){p.injury=pick(["Qo‘l shikastlanishi","Qovurg‘a lat yeyishi","Yuz jarohati"]);p.injuryMonths=int(1,2);logNews(`${p.name} mashg‘ulotda jarohat oldi`,p.injury);}
+ const changes=Object.keys(before).filter(k=>p.attrs[k]>before[k]).map(k=>`${k} +${(p.attrs[k]-before[k]).toFixed(1)}`).join(", ");logNews(`${p.name}: ${type} mashg‘uloti`,changes);save(true);render();toast(`${type}: ${changes||"tiklanish kerak"}`);
+};
+restDay=function(){
+ const p=S.player;if(!p||p.retired)return;p.fatigue=clamp(p.fatigue-25,0,100);p.condition=clamp(p.condition+18,0,100);
+ if(p.injury){p.injuryMonths=Math.max(0,p.injuryMonths-1);if(!p.injuryMonths){p.injury=null;logNews(`${p.name} jarohatdan qaytdi`);}}
+ ledger("expense",-Math.min(120,p.money),"Dam olish va kundalik xarajat");save(true);render();toast("Dam olish yakunlandi.");
+};
+retire=function(){
+ const p=S.player;if(!p||p.retired)return;if(!confirm("Faoliyatni yakunlashni tasdiqlaysizmi? Bu qaror qaytarilmaydi."))return;
+ p.legacy=Math.round(p.record.w*2+p.record.ko*1.5+p.titles.length*12+(S.bestRank?Math.max(0,25-S.bestRank):0)+p.popularity*.3);p.retired=true;S.retired=true;(p.titles||[]).slice().forEach(org=>blSetChampion(p.division,org,null,`${p.name} nafaqaga chiqdi.`));S.offers=[];recalcRankings();logNews(`${p.name} professional boksdan nafaqaga chiqdi`);save(true);page="profile";render();
+};
+teamPage=function(){
+ const p=S.player;if(!p)return creation();S.team=S.team||{trainer:"Club Trainer",trainerLevel:1,manager:"Local Manager",managerRate:8,promoterRate:10,medicalLevel:0};const t=S.team;
+ return `<section class="panel"><h2>Jamoa va shartnomalar</h2><p class="muted">Murabbiy mashg‘ulot natijasiga ta’sir qiladi. Menejer va promouter ulushi jang daromadidan ushlanadi. Tibbiy jamoa sparring jarohati xavfini kamaytiradi.</p>
+ <div class="grid2"><div class="result"><h3>Murabbiy</h3><div class="field"><label>Murabbiy turi</label><select id="trainerSelect"><option ${t.trainer==="Club Trainer"?"selected":""}>Club Trainer</option><option ${t.trainer==="Technical Coach"?"selected":""}>Technical Coach</option><option ${t.trainer==="Elite Coach"?"selected":""}>Elite Coach</option><option ${t.trainer==="None"?"selected":""}>None</option></select></div><div class="field"><label>Daraja: ${t.trainerLevel}</label><input id="trainerLevel" type="range" min="1" max="5" value="${t.trainerLevel}"></div><p class="muted">Yuqori daraja mashg‘ulot o‘sishini oshiradi, jangdan keyingi haqni biroz kamaytiradi.</p></div>
+ <div class="result"><h3>Menejer va promouter</h3><div class="field"><label>Menejer ulushi (%)</label><input id="managerRate" type="number" min="0" max="20" value="${t.managerRate}"></div><div class="field"><label>Promouter ulushi (%)</label><input id="promoterRate" type="number" min="0" max="25" value="${t.promoterRate}"></div><p class="muted">Past ulush — ko‘proq sof daromad, lekin shartnoma imkoniyatlari soddaroq.</p></div>
+ <div class="result"><h3>Tibbiy jamoa</h3><div class="field"><label>Daraja (0–3)</label><input id="medicalLevel" type="number" min="0" max="3" value="${t.medicalLevel}"></div><p class="muted">Sparring jarohati ehtimolini kamaytiradi. Har bir darajani saqlash uchun $1,000 xarajat.</p><button id="upgradeMedical" ${p.money<1000||t.medicalLevel>=3?"disabled":""}>Tibbiy xizmatni yaxshilash ($1,000)</button></div>
+ <div class="result"><h3>Homiylik</h3><p class="muted">Popularity 35 dan boshlab 6 oylik homiylik shartnomasi mavjud.</p><button id="sponsorBtn" ${p.popularity<35||p.money<2000||S.sponsors.some(x=>x.active)?"disabled":""}>Homiylik olish ($2,000)</button>${S.sponsors.map(x=>`<div class="muted">${esc(x.name)} · ${x.months} oy · ${x.active?"Faol":"Tugagan"}</div>`).join("")}</div></div>
+ <button class="primary" id="saveTeam">Jamoa shartlarini saqlash</button></section>`;
+};
+startTitleOffer=function(org){
+ const p=S.player;if(!p||!canTitleFight(p,p.division))return toast("Title Shot: top-5, kamida 8 g‘alaba, sog‘lom holat va yetarli condition kerak.",true);
+ if(S.activeFight)return toast("Faol jang mavjud.",true);const holderId=S.champions[p.division]?.[org],opp=holderId&&fighterById(holderId);
+ if(!opp||opp.id===p.id||!opp.active||opp.retired)return toast("Bu kamar uchun boshqa faol chempion mavjud emas.",true);
+ if(S.offers.some(o=>o.title&&o.org===org))return toast("Bu kamar uchun taklif allaqachon mavjud.",true);
+ const o={id:uid(),opponentId:opp.id,division:p.division,rounds:12,venue:pick(VENUES),year:S.year,month:Math.min(12,S.month+2),purse:Math.round(10000+p.popularity*500),bonus:5000,status:"Offer",title:true,org};
+ S.offers.unshift(o);page="offers";save(true);render();toast(`${org} Title Shot taklifi qo‘shildi.`);
+};
+function startUnificationOffer(org){
+ const p=S.player;if(!p||p.retired||p.injury||S.activeFight||!p.titles?.length)return toast("Unifikatsiya uchun faol chempion va sog‘lom holat kerak.",true);
+ const holderId=S.champions[p.division]?.[org],opp=holderId&&fighterById(holderId);
+ if(!opp||opp.id===p.id||!opp.active||opp.retired)return toast("Tanlangan kamar egasi mavjud emas.",true);
+ const ownOrg=p.titles.find(x=>S.champions[p.division]?.[x]===p.id);if(!ownOrg)return toast("Sizning amaldagi kamaringiz aniqlanmadi.",true);
+ if(S.offers.some(x=>x.unification))return toast("Unifikatsiya taklifi allaqachon mavjud.",true);
+ const offer={id:uid(),opponentId:opp.id,division:p.division,rounds:12,venue:pick(VENUES),year:S.year,month:Math.min(12,S.month+2),purse:Math.round(16000+p.popularity*550),bonus:8000,status:"Offer",title:true,org,orgs:[ownOrg,org],unification:true};
+ S.offers.unshift(offer);page="offers";save(true);render();toast(`${ownOrg} + ${org}: unifikatsiya jangi taklif qilindi.`);
+}
+const _BL_bind=bind;
+bind=function(){
+ _BL_bind();
+ $("#saveTeam")?.addEventListener("click",()=>{const p=S.player;if(!p)return;const t=S.team||(S.team={trainer:"Club Trainer",trainerLevel:1,managerRate:8,promoterRate:10,medicalLevel:0});const newTrainer=$("#trainerSelect").value,newLevel=clamp(+$("#trainerLevel").value,1,5);const fee={ "Club Trainer":0,"Technical Coach":2500,"Elite Coach":10000,"None":0}[newTrainer]||0;const oldFee={ "Club Trainer":0,"Technical Coach":2500,"Elite Coach":10000,"None":0}[t.trainer]||0;const levelFee=Math.max(0,newLevel-(t.trainerLevel||1))*1200;const cost=(newTrainer===t.trainer?0:fee)+levelFee;if(p.money<cost)return toast(`Bu jamoa o‘zgarishi uchun ${money(cost)} kerak.`,true);if(cost)ledger("expense",-cost,"Murabbiy shartnomasi va malaka oshirish");t.trainer=newTrainer;t.trainerLevel=newLevel;t.managerRate=clamp(+$("#managerRate").value,0,20);t.promoterRate=clamp(+$("#promoterRate").value,0,25);save(true);render();toast(`Jamoa shartlari saqlandi${cost?`; xarajat ${money(cost)}`:""}.`);});
+ $("#upgradeMedical")?.addEventListener("click",()=>{const p=S.player;if(!p||p.money<1000||S.team.medicalLevel>=3)return;ledger("expense",-1000,"Tibbiy jamoani yaxshilash");S.team.medicalLevel++;save(true);render();toast("Tibbiy jamoa yaxshilandi.");});
+ document.querySelectorAll("[data-unify]").forEach(b=>b.addEventListener("click",()=>startUnificationOffer(b.dataset.unify)));
+};
+const _BL_advance=advanceMonth;
+const _BL_save=save;
+save=function(silent=false){if(S.player){S.version=3;S.team=S.team||{trainer:"Club Trainer",trainerLevel:1,managerRate:8,promoterRate:10,medicalLevel:0};}return _BL_save(silent);};
+
+$("#quickSave").addEventListener("click",()=>save());$("#quickLoad").addEventListener("click",load);
+window.addEventListener("beforeunload",()=>{if(S.settings.autosave&&S.player)save(true)});
+render();
+</script>
+
+<script>
+// BOXING LEGACY PWA: cache the game for offline use after the first successful visit.
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Offline mode setup failed:', err));
+  });
+}
+</script>
+
+</body></html>
